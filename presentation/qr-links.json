@@ -1,0 +1,58 @@
+{
+  "prerequisites": {
+    "shortUrl": "https://wrl.li/https://wrl.li/mission-onboard",
+    "destination": "https://github.com/worldline/agent-odyssey-workshop#start",
+    "asset": "qr-prerequisites.png",
+    "httpStatus": 302,
+    "correctedQR": false
+  },
+  "demoKit": {
+    "shortUrl": "https://wrl.li/harness-demo-in",
+    "destination": "https://github.com/worldline/agent-odyssey-workshop/tree/main/harness/starter",
+    "asset": "qr-demo-kit.png",
+    "httpStatus": 302,
+    "correctedQR": false
+  },
+  "referenceService": {
+    "shortUrl": "https://wrl.li/agent-reference",
+    "destination": "https://github.com/worldline/agent-odyssey-workshop/tree/main/harness/solution",
+    "asset": "qr-service-solution.png",
+    "httpStatus": 302,
+    "correctedQR": false
+  },
+  "tp1Template": {
+    "shortUrl": "https://wrl.li/agent-tp1",
+    "destination": "https://colab.research.google.com/drive/1FRyi_XadXG1uDxwxBq3amjozduWyIr6E?#copy=true",
+    "asset": "qr-tp1-template.png",
+    "httpStatus": 302,
+    "correctedQR": false
+  },
+  "tp1Correction": {
+    "shortUrl": "https://wrl.li/agent-tp1-solution",
+    "destination": "https://colab.research.google.com/drive/1OcfUxo_CEe-J1tAO9ZYQxo2cpK278umW?#copy=true",
+    "asset": "qr-tp1-correction.png",
+    "httpStatus": 302,
+    "correctedQR": true
+  },
+  "tp2Template": {
+    "shortUrl": "https://wrl.li/agent-tp2",
+    "destination": "https://colab.research.google.com/drive/1UcEoBx8Hs4olAIsteLoklu9aEZsiv4tf?#copy=true",
+    "asset": "qr-tp2-template.png",
+    "httpStatus": 302,
+    "correctedQR": false
+  },
+  "tp2Correction": {
+    "shortUrl": "https://wrl.li/agent-tp2-solution",
+    "destination": "https://colab.research.google.com/drive/1505Q1ntRog-ZksFYCmsBy_-imFcErLqa?#copy=true",
+    "asset": "qr-tp2-correction.png",
+    "httpStatus": 302,
+    "correctedQR": true
+  },
+  "materials": {
+    "shortUrl": "https://wrl.li/agent-materials",
+    "destination": "https://github.com/worldline/agent-odyssey-workshop/blob/main/RESOURCES.md",
+    "asset": "qr-materials.png",
+    "httpStatus": 302,
+    "correctedQR": false
+  }
+}

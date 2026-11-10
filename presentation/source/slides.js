@@ -1101,7 +1101,7 @@ fetch('/links.json').then((response) => response.json()).then((links) => {
     anchor.href = url.href; anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; anchor.textContent = url.host + url.pathname;
     slot.querySelector('.resource-link').replaceChildren(anchor);
     const label = slot.querySelector('.mock-label');
-    if (label) label.textContent = 'Link configured · QR generation pending';
+    if (label) label.remove();
   }
 }).catch(() => {});
 restorePosition();

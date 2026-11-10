@@ -15,7 +15,7 @@ See [RESOURCES.md](RESOURCES.md) for slides, initial kit, correction and all not
 
 Watching the harness demonstration does not require Copilot. Following it requires an active licence, current Copilot CLI and Node.js 22+ to run the generated service.
 
-For Colab labs, use a personal Gmail and an individual Mistral API key in **Colab Secrets → MISTRAL_API_KEY**. Do not put keys in code or send them to the service. Model calls consume your account allowance; API access is not guaranteed free. Backend checks and model checks are separate. Gemini is optional coding help, not the lab model.
+For workshop Colab labs, use a personal Gmail. A dedicated Mistral API key will be supplied privately during the workshop: no personal Mistral account, billing activation or purchase is required for participants. Store the key in **Colab Secrets → MISTRAL_API_KEY**, never in code or the service. For independent reuse outside the workshop, supply your own API access; hosted model usage is not guaranteed free. Backend checks and model checks are separate. Gemini is optional coding help, not the lab model.
 
 For Jupyter, choose a Python 3.11+ kernel; the setup cells use %pip and an environment variable/masked prompt instead of google.colab imports. Start the backend using [its README](harness/solution/README.md). Jupyter on the service machine can use localhost; Colab requires the direct public HTTPS backend URL supplied by the service owner.
 

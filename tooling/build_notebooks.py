@@ -100,7 +100,7 @@ def common(tp, env, solution):
     def code(key, value, *tags): result.append(cell(prefix + key, value, True, tags))
     md("-setup", f'''
     ## Setup — {"Google Colab" if env == "colab" else "local Jupyter"}
-    {"Use a personal Gmail account. Put your key in Colab Secrets as MISTRAL_API_KEY and grant this notebook access." if env == "colab" else "Use a Python 3.11+ kernel. Supply MISTRAL_API_KEY through an environment variable or the masked prompt below."}
+    {"Use a personal Gmail account. Put the workshop-provided key (or your own key for independent reuse) in Colab Secrets as MISTRAL_API_KEY and grant this notebook access." if env == "colab" else "Use a Python 3.11+ kernel. Supply MISTRAL_API_KEY through an environment variable or the masked prompt below."}
     This notebook is independent of other notebooks. Never paste keys into cells, prompts, URLs or the shop.
     The service uses synthetic data; it does not require your model key. Library installation only downloads packages.
     Live model cells consume the selected account allowance; do not assume API access is free.

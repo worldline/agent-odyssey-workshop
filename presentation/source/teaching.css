@@ -523,6 +523,7 @@ body.controls-hidden:has(.slide:not([hidden]) > [data-id="break"]:not([hidden]))
   :is([data-id="tp1-checks"],[data-id="tp2-checks"]) .crew-colab-resource .resource-link { font-size: 20px; }
   .teaching:is([data-id="tp1-checks"],[data-id="tp2-checks"]) .crew-prep-content .crew-lab-output { font-size: 18px; }
 }
+.resource-link a, .payment-kit-resource a { color: inherit; text-decoration: none; }
 .crew-resource { margin: 0; display: flex; align-items: center; justify-content: center; gap: 12px; }
 .crew-resource img { width: 88px; height: 88px; flex: none; }
 .crew-resource figcaption { display: grid; gap: 4px; }

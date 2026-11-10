@@ -7,9 +7,13 @@ Four browser-hosted Colab variants and four local Jupyter variants. Environment 
 | TP1 — Pricing | [Open in Colab](https://colab.research.google.com/github/worldline/agent-odyssey-workshop/blob/main/notebooks/colab/tp1-template.ipynb) | [Open in Colab](https://colab.research.google.com/github/worldline/agent-odyssey-workshop/blob/main/notebooks/colab/tp1-correction.ipynb) | [Download](jupyter/tp1-template.ipynb) | [Download](jupyter/tp1-correction.ipynb) |
 | TP2 — DeepAgents | [Open in Colab](https://colab.research.google.com/github/worldline/agent-odyssey-workshop/blob/main/notebooks/colab/tp2-template.ipynb) | [Open in Colab](https://colab.research.google.com/github/worldline/agent-odyssey-workshop/blob/main/notebooks/colab/tp2-correction.ipynb) | [Download](jupyter/tp2-template.ipynb) | [Download](jupyter/tp2-correction.ipynb) |
 
+## Workshop hosted Colab copies
+
+The active short links point to owner-hosted Drive copies: [TP1 template](https://wrl.li/agent-tp1), [TP1 correction](https://wrl.li/agent-tp1-solution), [TP2 template](https://wrl.li/agent-tp2), [TP2 correction](https://wrl.li/agent-tp2-solution). The source links above remain versioned in GitHub. Check Drive sharing permissions with a participant-like personal Google account; a redirect alone is not proof of notebook access.
+
 ## Start
 
-Colab: personal Gmail; secret MISTRAL_API_KEY with notebook access. Local Jupyter: Python 3.11+ kernel; the notebook uses %pip and an environment variable/masked key prompt, with no google.colab import. Select the matching file; do not copy Colab setup cells to local Jupyter.
+Colab: personal Gmail; the workshop key is supplied privately and saved as secret MISTRAL_API_KEY with notebook access. No Mistral account or personal billing is required for workshop participants; independent users provide their own API access. Local Jupyter: Python 3.11+ kernel; the notebook uses %pip and an environment variable/masked key prompt, with no google.colab import. Select the matching file; do not copy Colab setup cells to local Jupyter.
 
 Start the [service](../harness/solution/) separately. Local Jupyter on its machine can use localhost; Colab needs the direct public HTTPS backend URL. Each notebook configures its own backend/model and checks them independently. Only live model/probe cells consume API allowance. API access/free credits are not guaranteed.
 
