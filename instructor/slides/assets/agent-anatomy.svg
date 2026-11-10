@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" role="img" aria-labelledby="agent-anatomy-title agent-anatomy-desc">
+  <title id="agent-anatomy-title">Anatomy of a tool-using AI agent</title>
+  <desc id="agent-anatomy-desc">A robot with a brain in a glass jar: the LLM selects actions, tools act, a runtime manages the feedback loop, and current context holds messages and results. Persistent memory and retrieval are optional attachments.</desc>
+  <defs>
+    <radialGradient id="agent-image-horizontal" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="1" gradientTransform="translate(500 215) scale(300 245)"><stop offset="0" stop-color="white"/><stop offset=".74" stop-color="white"/><stop offset=".90" stop-color="white" stop-opacity=".35"/><stop offset="1" stop-color="white" stop-opacity="0"/></radialGradient>
+    <linearGradient id="agent-image-vertical" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="white" stop-opacity="0"/><stop offset=".025" stop-color="white" stop-opacity="0"/><stop offset=".09" stop-color="white"/><stop offset=".91" stop-color="white"/><stop offset=".975" stop-color="white" stop-opacity="0"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient>
+    <mask id="agent-image-side-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="440"><rect width="1000" height="440" fill="url(#agent-image-horizontal)"/></mask>
+    <mask id="agent-image-edge-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="440"><rect width="1000" height="440" fill="url(#agent-image-vertical)"/></mask>
+  </defs>
+  <g id="agent-robot-cutaway" mask="url(#agent-image-edge-mask)"><image href="/assets/agent-cutaway.png" x="0" y="0" width="1000" height="440" preserveAspectRatio="xMidYMid meet" mask="url(#agent-image-side-mask)"/></g>
+  <g font-family="system-ui,sans-serif" fill="#f4f9ff" font-size="30" font-weight="650">
+    <text x="18" y="44">Goal + instructions</text><text x="18" y="149">Tools</text><text x="18" y="283">Runtime / loop</text>
+    <text x="674" y="44">LLM</text><text x="674" y="139">Current context</text><text x="674" y="244" fill="#8290a0">Memory (optional)</text><text x="674" y="340" fill="#8290a0">RAG (optional)</text>
+  </g>
+  <g font-family="system-ui,sans-serif" fill="#c7d9e8" font-size="24">
+    <text x="18" y="73">Task + constraints</text><text x="18" y="178">Read, edit, execute,</text><text x="18" y="205">call APIs</text><text x="18" y="312">Act → observe → repeat</text>
+    <text x="674" y="73">Choose the next action</text><text x="674" y="168">Messages, state, results</text><text x="674" y="273" fill="#8290a0">Durable information</text><text x="674" y="369" fill="#8290a0">Retrieve external knowledge</text>
+  </g>
+  <defs>
+    <marker id="agent-arrow-gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#ffd18b"/></marker>
+    <marker id="agent-arrow-cyan" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7Z" fill="#83f0f4"/></marker>
+  </defs>
+  <g fill="none" stroke="#ffd18b" stroke-width="2" marker-end="url(#agent-arrow-gold)">
+    <path data-agent-target="goal" d="M313 55C390 70 382 206 483 222"/>
+    <path data-agent-target="runtime" d="M313 286C388 296 400 261 479 262"/>
+    <path data-agent-target="llm" d="M659 52H551"/>
+    <path data-agent-target="context" d="M659 152C610 165 585 249 529 245"/>
+  </g>
+  <g fill="none" stroke="#83f0f4" stroke-width="2" marker-end="url(#agent-arrow-cyan)">
+    <path data-agent-target="left-hand" d="M294 176Q350 185 384 237"/>
+    <path data-agent-target="left-foot" d="M294 210C280 340 324 390 451 388"/>
+  </g>
+</svg>

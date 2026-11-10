@@ -1,0 +1,24 @@
+{
+  "name": "agent-odyssey-instructor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "harness/solution"
+  ],
+  "scripts": {
+    "slides": "node tooling/serve-slides.mjs",
+    "start": "node tooling/run-reference.mjs",
+    "service": "node tooling/run-reference.mjs",
+    "all": "node start-all.mjs",
+    "share": "node --env-file=.env tooling/expose-service.mjs --allow-public-exposure --prompt-authtoken",
+    "check:service": "node tooling/expose-service.mjs --check-only",
+    "test": "npm test --workspace=harness/solution"
+  },
+  "devDependencies": {
+    "@ngrok/ngrok": "1.7.0"
+  }
+}

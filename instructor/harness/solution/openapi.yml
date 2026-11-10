@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: North Star Supply
+  version: 1.0.0
+  description: Unauthenticated temporary demo with synthetic data only; no real payments
+    or LLM calls.
+components:
+  schemas:
+    QuoteRequest:
+      type: object
+      required:
+      - amount_cents
+      - payment_method
+      properties:
+        amount_cents:
+          type: integer
+          minimum: 1
+          maximum: 100000000
+        payment_method:
+          type: string
+          minLength: 1
+          maxLength: 64
+paths:
+  /health:
+    get:
+      responses:
+        '200':
+          description: Service status
+  /payment-methods:
+    get:
+      description: Catalogue of synthetic methods and fee rules.
+      responses:
+        '200':
+          description: Catalogue
+  /merchant-policy:
+    get:
+      description: Allowed method ids and fee cap, separate from pricing.
+      responses:
+        '200':
+          description: Synthetic merchant policy
+      parameters:
+      - name: amount_cents
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100000000
+        description: Optional amount resolves per-method effective_fee_caps, including
+          Visa proportional cap.
+  /quotes:
+    post:
+      description: Compute the fee and return explicit merchant policy validation
+        (status, enabled flag, applicable cap and failure reasons). HTTP 200 means
+        the simulation completed, not that a real payment was accepted.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+            example:
+              amount_cents: 10000
+              payment_method: mastercard
+      responses:
+        '200':
+          description: Quote plus validation.status passed/failed; no real payment
+            executed.
+        '404':
+          description: Unknown method
+        '422':
+          description: Invalid amount or missing field

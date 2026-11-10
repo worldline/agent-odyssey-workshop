@@ -1,0 +1,38 @@
+/* Full-course layouts. Essential teaching text remains >=26px at 1280x720. */
+.programme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.programme-grid article { padding: 20px; border: 1px solid #557990; background: #0b2032; border-radius: 14px; }
+.programme-grid h2 { color: var(--cyan); }
+.programme-grid dl { margin: 12px 0 0; }
+.programme-grid dl > div { display: grid; grid-template-columns: auto 1fr; gap: 15px; border-top: 1px solid #45677d; padding: 10px 0; }
+.programme-grid dt, .programme-grid dd { margin: 0; font-size: 26px; line-height: 1.3; }
+.programme-grid dt { color: var(--muted); }
+.programme-break dd { color: var(--amber); }
+.harness-shell { padding: 16px; border: 2px solid var(--cyan); border-radius: 18px; background: #0b2032; }
+.harness-label { display: block; font-weight: 700; color: var(--cyan); margin-bottom: 12px; }
+.harness-controls { display: flex; justify-content: space-around; gap: 12px; margin-top: 14px; }
+.harness-controls span { padding: 7px 12px; color: var(--amber); }
+.flow-player { display: grid; gap: 12px; }
+.flow-run { justify-self: start; padding: 8px 15px; border: 1px solid var(--cyan); border-radius: 9px; background: #102e43; color: var(--cyan); font-size: 26px; cursor: pointer; }
+.flow-run:disabled { opacity: .5; }
+[data-flow-node] { transition: background .25s, border-color .25s, box-shadow .25s; }
+[data-flow-node].flow-active { background: #163d46; border-color: var(--cyan); box-shadow: 0 0 24px #83f0f430; }
+.flow-result { padding-left: 15px; border-left: 4px solid var(--amber); color: var(--muted); }
+.lab-resource { display: grid; grid-template-columns: 165px minmax(0, 1fr); gap: 25px; align-items: center; padding: 20px; border: 1px solid #557990; border-radius: 14px; background: #0b2032; }
+.lab-resource h2 { margin-bottom: 9px; color: var(--cyan); }
+.lab-resource p { color: var(--muted); }
+.qr-slot { display: grid; justify-items: center; gap: 7px; }
+.qr-slot img { width: 150px; height: 150px; }
+.qr-slot span { color: var(--amber); font-size: 16px; }
+.lab-resource .resource-link { display: block; color: var(--cyan); font-size: 28px; font-family: ui-monospace, monospace; margin-top: 12px; overflow-wrap: anywhere; }
+.mock-label { display: block; margin-top: 5px; color: var(--amber); font-size: 16px; }
+.lab-timer { display: flex; gap: 12px; align-items: center; }
+.timer-value { font-family: ui-monospace, monospace; font-size: 48px !important; min-width: 165px; color: var(--amber); }
+.lab-timer button { font-size: 24px; padding: 9px 13px; cursor: pointer; border: 1px solid #557990; border-radius: 9px; color: var(--ink); background: #0d2539; }
+.routing-list { display: grid; gap: 14px; }
+.routing-list p { padding: 14px 18px; border: 1px solid #557990; border-radius: 10px; background: #0b2032; }
+.routing-list strong { color: var(--cyan); }
+.dashboard-visual { display: block; max-width: 100%; max-height: 320px; object-fit: contain; align-self: flex-start; border: 1px solid #557990; border-radius: 12px; }
+.illustrated-code { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 24px; align-items: center; }
+.illustrated-code img { width: 180px; height: 180px; }
+@media (max-height: 750px) { .programme-grid article { padding: 16px; } .programme-grid dl > div { padding: 8px 0; } .lab-resource { padding: 16px; } .dashboard-visual { max-height: 300px; } .harness-shell { padding: 12px; } .harness-controls { margin-top: 9px; } }
+@media (prefers-reduced-motion: reduce) { [data-flow-node] { transition: none; } }

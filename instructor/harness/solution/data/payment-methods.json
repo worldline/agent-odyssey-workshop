@@ -1,0 +1,43 @@
+{
+  "currency": "EUR",
+  "methods": [
+    {
+      "id": "visa",
+      "name": "Visa",
+      "display_name": "Visa",
+      "brands": [
+        "Visa"
+      ],
+      "description": "Simulated Visa payment: higher fixed fee, lower percentage.",
+      "rate_basis_points": 90,
+      "fixed_fee_cents": 80
+    },
+    {
+      "id": "mastercard",
+      "name": "Mastercard",
+      "display_name": "Mastercard",
+      "brands": [
+        "Mastercard"
+      ],
+      "description": "Simulated Mastercard payment: lower fixed fee, higher percentage.",
+      "rate_basis_points": 140,
+      "fixed_fee_cents": 20
+    },
+    {
+      "id": "wallet",
+      "name": "Wallet",
+      "display_name": "Digital wallet",
+      "description": "Simulated digital-wallet payment.",
+      "rate_basis_points": 120,
+      "fixed_fee_cents": 10
+    },
+    {
+      "id": "bank_transfer",
+      "name": "Bank transfer",
+      "display_name": "Bank transfer",
+      "description": "Available for simulation; disabled by this merchant.",
+      "rate_basis_points": 40,
+      "fixed_fee_cents": 10
+    }
+  ]
+}

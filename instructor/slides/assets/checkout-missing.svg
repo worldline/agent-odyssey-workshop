@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="640" viewBox="0 0 1040 640" role="img" aria-labelledby="missing-checkout-title missing-checkout-desc">
+  <title id="missing-checkout-title">The shop is ready, but its payment system is missing</title>
+  <desc id="missing-checkout-desc">An illustrative checkout screen shows a mission sticker ready to buy and a large amber warning: payment system missing. This is a fictional visual, not the working application.</desc>
+  <defs>
+    <linearGradient id="missing-case" x2="0" y2="1"><stop stop-color="#bed7e4"/><stop offset="1" stop-color="#547c96"/></linearGradient>
+  </defs>
+  <ellipse cx="664" cy="564" rx="283" ry="25" fill="#030c17" opacity=".5"/>
+  <path d="M340 500H961" stroke="#6d91a4" stroke-width="19" stroke-linecap="round"/>
+  <path d="M416 516V553M898 516V553" stroke="#31566f" stroke-width="13"/>
+  <path d="M666 443V492H749V443" fill="#7a9cac"/>
+  <rect x="407" y="127" width="562" height="327" rx="28" fill="url(#missing-case)" stroke="#1b3c55" stroke-width="8"/>
+  <rect x="428" y="149" width="520" height="280" rx="14" fill="#0b2032"/>
+  <text x="685" y="203" text-anchor="middle" fill="#d5eff7" font-family="system-ui, sans-serif" font-size="42" font-weight="750">CHECKOUT</text>
+  <path d="M455 223H921" stroke="#486a7d" stroke-width="3"/>
+  <rect x="464" y="244" width="114" height="107" rx="12" fill="#f2e2bb"/>
+  <path d="M521 259l13 26 29 4-21 20 5 29-26-14-26 14 5-29-21-20 29-4Z" fill="#dfad58" stroke="#a16f35" stroke-width="3"/>
+  <text x="600" y="283" fill="#9ce2c2" font-family="system-ui, sans-serif" font-size="31" font-weight="650">Product ready.</text>
+  <path d="M611 308l11 12 22-25" fill="none" stroke="#9ce2c2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="504" y="322" width="466" height="112" rx="16" fill="#302536" stroke="#ffd18b" stroke-width="4"/>
+  <g>
+    <path d="M554 341l-27 49h54Z" fill="#ffd18b"/>
+    <path d="M554 356v13" stroke="#302536" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="554" cy="380" r="3" fill="#302536"/>
+    <text x="606" y="363" fill="#ffd18b" font-family="system-ui, sans-serif" font-size="29" font-weight="750">PAYMENT SYSTEM</text>
+    <text x="605" y="414" fill="#fff1d8" font-family="system-ui, sans-serif" font-size="40" font-weight="800">MISSING</text>
+  </g>
+  <g fill="#bceaff"><circle cx="380" cy="94" r="3"/><circle cx="866" cy="86" r="3"/><circle cx="326" cy="561" r="2"/></g>
+</svg>

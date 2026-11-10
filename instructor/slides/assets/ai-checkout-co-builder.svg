@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" role="img" aria-labelledby="title desc">
+  <title id="title">An Argonaut and an AI co-builder working on a checkout</title>
+  <desc id="desc">A friendly robot labelled AI helps create a checkout screen while an Argonaut holds up a star sticker. A speech bubble says Just one sticker. The scene is a humorous metaphor for AI-assisted development, not a model processing real payments.</desc>
+  <defs>
+    <linearGradient id="metal" x2="0" y2="1"><stop stop-color="#e8f6ff"/><stop offset="1" stop-color="#84aabd"/></linearGradient>
+    <linearGradient id="window" x2="0" y2="1"><stop stop-color="#153952"/><stop offset="1" stop-color="#091b30"/></linearGradient>
+  </defs>
+  <!-- A small shop/workbench inside the spacecraft. -->
+  <rect x="74" y="124" width="882" height="438" rx="54" fill="#173347" stroke="#628ba1" stroke-width="6"/>
+  <rect x="115" y="158" width="328" height="198" rx="28" fill="url(#window)" stroke="#a3c6d5" stroke-width="9"/>
+  <g fill="#d3f7ff"><circle cx="171" cy="210" r="3"/><circle cx="369" cy="198" r="3"/><circle cx="211" cy="315" r="2"/></g>
+  <path d="M318 240l7 21 22 7-22 7-7 22-7-22-22-7 22-7Z" fill="#a5eef0"/>
+  <path d="M106 523H931" stroke="#456579" stroke-width="5"/>
+  <ellipse cx="346" cy="544" rx="80" ry="13" fill="#071b2a"/>
+  <ellipse cx="836" cy="544" rx="72" ry="13" fill="#071b2a"/>
+  <!-- AI co-builder: a playful assistant, not the boss. -->
+  <path d="M317 467L303 529M365 467L383 529" stroke="#8aaebf" stroke-width="30" stroke-linecap="round"/>
+  <path d="M287 533H319M369 533H405" stroke="#d2e9f3" stroke-width="20" stroke-linecap="round"/>
+  <rect x="290" y="340" width="109" height="139" rx="23" fill="url(#metal)" stroke="#294a60" stroke-width="6"/>
+  <rect x="312" y="366" width="67" height="65" rx="10" fill="#175b66"/>
+  <text x="345" y="410" text-anchor="middle" fill="#bffeff" font-family="system-ui, sans-serif" font-size="39" font-weight="800">AI</text>
+  <path d="M291 366L255 403 277 447M398 367L443 394 478 353" stroke="#a8cad8" stroke-width="23" stroke-linecap="round" fill="none"/>
+  <circle cx="258" cy="403" r="11" fill="#658d9e"/>
+  <circle cx="444" cy="394" r="11" fill="#658d9e"/>
+  <path d="M342 339V311" stroke="#9ec4d2" stroke-width="19"/>
+  <rect x="276" y="229" width="137" height="89" rx="28" fill="url(#metal)" stroke="#294a60" stroke-width="6"/>
+  <rect x="293" y="246" width="103" height="50" rx="18" fill="#16354b"/>
+  <g fill="#9cf3e8"><circle cx="317" cy="266" r="8"/><circle cx="372" cy="266" r="8"/></g>
+  <path d="M334 283q11 10 23 0" fill="none" stroke="#9cf3e8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M345 228V208" stroke="#9bc4d6" stroke-width="6"/>
+  <circle cx="345" cy="202" r="10" fill="#ffcf8b"/>
+  <!-- Checkout under construction. No purchase is being executed. -->
+  <rect x="445" y="241" width="287" height="209" rx="19" fill="#b7d0de" stroke="#294a60" stroke-width="7"/>
+  <rect x="464" y="260" width="249" height="166" rx="8" fill="#0c243a"/>
+  <text x="589" y="300" text-anchor="middle" fill="#a2efec" font-family="system-ui, sans-serif" font-size="29" font-weight="750">CHECKOUT</text>
+  <path d="M485 320H691" stroke="#3e6c82" stroke-width="3"/>
+  <path d="M514 334l5 12 13 1-10 9 3 13-11-7-12 7 3-13-10-9 14-1Z" fill="#ffd08a"/>
+  <text x="548" y="361" fill="#e0eff9" font-family="system-ui, sans-serif" font-size="24">One sticker</text>
+  <rect x="491" y="384" width="195" height="22" rx="8" fill="#233f55"/>
+  <rect x="491" y="384" width="96" height="22" rx="8" fill="#63b9b3"/>
+  <path d="M574 451V474H617V451" fill="#7197aa"/>
+  <path d="M438 481H741" stroke="#e5c8a1" stroke-width="21" stroke-linecap="round"/>
+  <path d="M467 492V540M715 492V540" stroke="#648ea2" stroke-width="13"/>
+  <!-- Argonaut leads: one sticker in hand, a very modest requirement. -->
+  <path d="M809 462L805 531M855 462L876 531" stroke="#566088" stroke-width="29" stroke-linecap="round"/>
+  <path d="M791 537H821M863 537H895" stroke="#c0c4e0" stroke-width="18" stroke-linecap="round"/>
+  <path d="M789 367Q826 341 865 368L877 468H781Z" fill="#a6a0d0" stroke="#555275" stroke-width="6"/>
+  <path d="M795 383L758 397 719 354M862 385L896 421" stroke="#a6a0d0" stroke-width="24" stroke-linecap="round" fill="none"/>
+  <path d="M827 343V367" stroke="#a56e53" stroke-width="21"/>
+  <ellipse cx="832" cy="311" rx="34" ry="40" fill="#bd8565"/>
+  <path d="M799 307Q788 263 834 267Q877 271 866 309L850 287 808 290Z" fill="#35343b"/>
+  <path d="M810 325q13 11 24 0" stroke="#704535" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="824" cy="304" r="3" fill="#35343b"/>
+  <rect x="692" y="308" width="56" height="54" rx="8" fill="#f6edd3" stroke="#d4b889" stroke-width="3" transform="rotate(-12 720 335)"/>
+  <path d="M720 316l6 12 14 2-10 10 2 14-12-7-12 7 2-14-10-10 14-2Z" fill="#e6af57"/>
+  <!-- The joke stays visual and non-technical. -->
+  <path d="M667 72H949Q968 72 968 94V157Q968 179 946 179H838L812 215 810 179H667Q645 179 645 157V94Q645 72 667 72Z" fill="#f8ead3" stroke="#b89b77" stroke-width="4"/>
+  <text x="807" y="136" text-anchor="middle" fill="#3c4254" font-family="system-ui, sans-serif" font-size="32" font-weight="700">Just one sticker.</text>
+</svg>

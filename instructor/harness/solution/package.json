@@ -1,0 +1,16 @@
+{
+  "name": "north-star-supply",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/*.test.js && node tests/frontend.cjs"
+  },
+  "dependencies": {
+    "express": "5.3.0"
+  }
+}

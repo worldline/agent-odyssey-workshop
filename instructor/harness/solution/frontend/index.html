@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>North Star Supply · Checkout Lab</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/emblem.svg">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><img src="/assets/emblem.svg" alt="" width="36" height="36"><span>ARGONAUT GUILD <strong>SHOP ADMIN</strong></span></div>
+      <div class="service-tools"><span id="service-status" class="status" role="status" aria-live="polite" data-state="loading">Connecting</span></div>
+    </header>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow">Onboard the Odyssey · Bound for North Star</p><h1 id="hero-title">North Star Supply</h1><p class="hero-note">Payment modes, API simulation and merchant rules.</p></div>
+      <div class="flight-scene" aria-hidden="true"><img class="space-window" src="/assets/viewport.svg" alt=""><img class="shuttle" src="/assets/shuttle.svg" alt=""><span class="scene-light"></span></div>
+    </section>
+    <section class="panel catalogue" aria-labelledby="methods-title">
+      <div class="panel-heading"><h2 id="methods-title">Payment modes</h2><span class="section-note">Select a mode to simulate</span></div>
+      <div id="methods-body" class="methods-grid" role="group" aria-label="Payment method shortcuts"></div>
+    </section>
+    <div class="workbench">
+      <section class="panel quote-panel" aria-labelledby="quote-title">
+        <div class="panel-heading"><h2 id="quote-title">API simulator</h2><div class="view-tabs" role="tablist" aria-label="Response view"><button id="summary-tab" class="view-tab" type="button" role="tab" aria-controls="summary-view" aria-selected="true">Summary</button><button id="http-tab" class="view-tab" type="button" role="tab" aria-controls="http-view" aria-selected="false">HTTP</button></div></div>
+        <div class="quote-workspace">
+          <form id="quote-form">
+            <div class="field"><label for="amount">Amount · EUR</label><input id="amount" type="text" inputmode="decimal" value="100.00" required autocomplete="off"></div>
+            <div class="field"><label for="payment-method">Payment mode</label><select id="payment-method" required></select></div>
+            <button id="calculate-button" type="submit" disabled>Calculate fee <span aria-hidden="true">→</span></button>
+          </form>
+          <div class="result-area">
+            <div id="summary-view" role="tabpanel" aria-labelledby="summary-tab" aria-live="polite">
+            <div id="empty-result" class="empty-result"><span class="empty-orbit" aria-hidden="true">✦</span><h3 id="empty-title">Ready for a quote</h3><p id="empty-note">Select a method and calculate its fee.</p></div>
+            <div id="quote-result" class="result" hidden><p class="eyebrow">Payment fee</p><p id="fee-value" class="fee"></p><p id="calculation-description" class="calculation"></p><p id="eligibility" class="eligibility"></p><ul id="eligibility-reasons" class="checks"></ul></div>
+            </div>
+            <div id="http-view" class="http-view" role="tabpanel" aria-labelledby="http-tab" hidden><label for="http-record" class="http-label">Recent API calls</label><div class="http-controls"><select id="http-record" aria-label="Recorded API call"></select><span id="http-status" class="http-status">—</span></div><pre id="http-response" class="http-response" tabindex="0" aria-label="Raw API response">Run an API request to inspect its response.</pre></div>
+          </div>
+        </div>
+      </section>
+      <section class="panel policy-panel" aria-labelledby="policy-title">
+        <div class="panel-heading"><h2 id="policy-title">Merchant policies</h2></div>
+        <dl class="policy-rules">
+          <div class="policy-rule"><dt>Enabled payment modes</dt><dd id="policy-summary">Waiting for the service.</dd></div>
+          <div class="policy-rule"><dt>Fee limits</dt><dd id="policy-cap">—</dd></div>
+          <div class="policy-rule"><dt>Eligibility rule</dt><dd>Mode enabled and fee within the limit. Choose the lowest eligible fee.</dd></div>
+        </dl>
+      </section>
+    </div>
+    <footer><span>ODYSSEY · NORTH STAR SUPPLY</span><span>Synthetic data · No real payments</span></footer>
+  </main>
+</body>
+</html>

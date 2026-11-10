@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 680" role="img" aria-labelledby="title desc">
+  <title id="title">Odyssey, Worldline’s rocket, with its onboard North Star Supply shop exposed</title>
+  <desc id="desc">A playful cutaway of a Worldline-labelled spacecraft. Inside, a shopkeeper stands behind a payment counter while two travellers browse and pay. This is an original fictional illustration, not an official Worldline logo.</desc>
+  <defs>
+    <linearGradient id="hull" x2="0" y2="1"><stop stop-color="#edf7ff"/><stop offset=".5" stop-color="#aec7dc"/><stop offset="1" stop-color="#5d819e"/></linearGradient>
+    <linearGradient id="nose"><stop stop-color="#6d9eae"/><stop offset="1" stop-color="#153952"/></linearGradient>
+    <linearGradient id="room" x2="0" y2="1"><stop stop-color="#fff4df"/><stop offset="1" stop-color="#f4d5b0"/></linearGradient>
+    <linearGradient id="flame"><stop stop-color="#ffcc85" stop-opacity="0"/><stop offset="1" stop-color="#ffd09b"/></linearGradient>
+    <pattern id="floor" width="44" height="24" patternUnits="userSpaceOnUse"><path d="M0 24H44M0 0V24" fill="none" stroke="#bf9b80" stroke-width="1"/></pattern>
+  </defs>
+  <!-- Space is a visual setting only. -->
+  <g fill="#bceaff"><circle cx="190" cy="78" r="3"/><circle cx="1030" cy="72" r="3"/><circle cx="1144" cy="594" r="3"/><circle cx="347" cy="621" r="2"/><circle cx="750" cy="71" r="2"/></g>
+  <g stroke="#bceaff" stroke-width="2"><path d="M100 137v16m-8-8h16M1178 92v20m-10-10h20M675 620v18m-9-9h18"/></g>
+  <ellipse cx="680" cy="603" rx="460" ry="24" fill="#020b18" opacity=".4"/>
+  <!-- Tail, fins and hull, seen side-on. -->
+  <path d="M220 250L118 102 294 144 362 255M220 465L123 592 295 558 365 471" fill="#9b9cc8" stroke="#283b61" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M39 316Q111 351 168 331V419Q91 398 24 432L72 368Z" fill="url(#flame)"/>
+  <path d="M150 280H235V470H150Q126 375 150 280" fill="#243c57" stroke="#0e2139" stroke-width="7"/>
+  <path d="M172 300V451M194 292V460" stroke="#789ab2" stroke-width="7"/>
+  <path d="M277 131H927Q1081 133 1228 373Q1085 586 927 586H277Q224 544 224 487V234Q224 174 277 131Z" fill="url(#hull)" stroke="#284764" stroke-width="7"/>
+  <path d="M994 160Q1126 208 1228 373Q1119 544 996 565L1028 481V245Z" fill="url(#nose)" stroke="#284764" stroke-width="5"/>
+  <path d="M1053 264Q1116 291 1155 348L1070 350Z" fill="#94e3e3" stroke="#1c4158" stroke-width="6"/>
+  <path d="M1065 285L1112 312" stroke="#edffff" stroke-width="9" stroke-linecap="round" opacity=".65"/>
+  <text x="309" y="197" fill="#173c53" font-family="system-ui, sans-serif" font-weight="800" font-size="49" letter-spacing="-1">Worldline</text>
+  <text x="592" y="197" fill="#173c53" font-family="system-ui, sans-serif" font-size="28" font-weight="600">ODYSSEY</text>
+  <g fill="#436c89"><circle cx="777" cy="183" r="15"/><circle cx="828" cy="183" r="15"/><circle cx="879" cy="183" r="15"/></g>
+  <path d="M299 217H977" stroke="#638aa3" stroke-width="3" stroke-dasharray="9 8"/>
+  <!-- Cutaway: the warm shop is visibly inside the cool outer hull. -->
+  <rect x="284" y="238" width="714" height="292" rx="19" fill="url(#room)" stroke="#27435a" stroke-width="8"/>
+  <path d="M291 481H991V515Q991 525 980 525H300Q291 525 291 515Z" fill="#d5b493"/>
+  <path d="M291 481H991V515Q991 525 980 525H300Q291 525 291 515Z" fill="url(#floor)"/>
+  <rect x="534" y="252" width="415" height="51" rx="8" fill="#174b56"/>
+  <text x="741" y="288" text-anchor="middle" fill="#eafff4" font-family="system-ui, sans-serif" font-size="30" font-weight="750">NORTH STAR SUPPLY</text>
+  <!-- Shelves: mugs, patches and snacks, not extra application features. -->
+  <rect x="318" y="274" width="175" height="190" rx="6" fill="#b28569"/>
+  <rect x="329" y="284" width="153" height="168" fill="#edcfad"/>
+  <g stroke="#775b4d" stroke-width="8"><path d="M323 344H488M323 404H488M323 456H488"/></g>
+  <g fill="#3f808d" stroke="#265261" stroke-width="3"><path d="M343 310h25v30h-25zM411 310h25v30h-25z"/><path d="M368 314h10v15h-10M436 314h10v15h-10" fill="none"/></g>
+  <g fill="#ffbd64" stroke="#8e663d" stroke-width="2"><rect x="340" y="360" width="31" height="36" rx="4"/><rect x="381" y="355" width="29" height="41" rx="4"/><rect x="422" y="360" width="35" height="36" rx="4"/></g>
+  <g fill="#eaf9ff" stroke="#6c8c97" stroke-width="2"><path d="M342 423l15-9 16 9-4 22h-24zM401 423l15-9 16 9-4 22h-24z"/></g>
+  <!-- Traveller browsing. -->
+  <ellipse cx="550" cy="510" rx="35" ry="8" fill="#775a4a" opacity=".25"/>
+  <path d="M535 452L531 501M557 452L565 501" stroke="#324763" stroke-width="19" stroke-linecap="round"/>
+  <path d="M521 408Q547 386 573 408L575 460H519Z" fill="#9189c0" stroke="#423f68" stroke-width="4"/>
+  <path d="M527 415L501 436 484 423M567 416L586 434" fill="none" stroke="#9189c0" stroke-width="16" stroke-linecap="round"/>
+  <path d="M543 390V404" stroke="#d79771" stroke-width="14"/>
+  <ellipse cx="547" cy="370" rx="23" ry="27" fill="#dda17e"/>
+  <path d="M525 368Q520 337 549 342Q575 345 570 368L558 354 531 358Z" fill="#44363a"/>
+  <path d="M552 379q7 5 11-1" fill="none" stroke="#734738" stroke-width="2"/>
+  <!-- Shopkeeper behind the counter. -->
+  <path d="M672 363V380" stroke="#8c5944" stroke-width="15"/>
+  <ellipse cx="677" cy="341" rx="23" ry="27" fill="#a46e54"/>
+  <path d="M654 339Q651 309 677 312Q704 311 701 339L690 325 660 327Z" fill="#24383a"/>
+  <path d="M680 351q8 5 13-2" stroke="#56392f" stroke-width="2" fill="none"/>
+  <path d="M654 386Q678 365 704 386L710 438H649Z" fill="#4a9394" stroke="#285f6a" stroke-width="4"/>
+  <path d="M698 392L726 412 752 404" fill="none" stroke="#4a9394" stroke-width="15" stroke-linecap="round"/>
+  <rect x="661" y="397" width="28" height="16" rx="3" fill="#f7e8bd"/>
+  <!-- Counter and recognisable payment terminal. -->
+  <rect x="626" y="434" width="204" height="84" rx="5" fill="#286579" stroke="#173e51" stroke-width="5"/>
+  <rect x="612" y="423" width="232" height="18" rx="6" fill="#ddb992" stroke="#8a674d" stroke-width="4"/>
+  <path d="M730 421l11-47h37l9 47Z" fill="#253c55" stroke="#11243d" stroke-width="4"/>
+  <rect x="744" y="383" width="28" height="20" rx="3" fill="#9fe5d7"/>
+  <g fill="#f0f5f5"><circle cx="747" cy="411" r="2"/><circle cx="756" cy="411" r="2"/><circle cx="765" cy="411" r="2"/></g>
+  <circle cx="726" cy="476" r="22" fill="#70bdbf"/>
+  <path d="M726 460l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1Z" fill="#e4ffff"/>
+  <!-- Traveller paying: relaxed posture, card held toward the terminal. -->
+  <ellipse cx="906" cy="517" rx="35" ry="8" fill="#775a4a" opacity=".25"/>
+  <path d="M893 458L889 508M916 458L924 508" stroke="#263f52" stroke-width="20" stroke-linecap="round"/>
+  <path d="M880 409Q905 387 930 409L937 466H876Z" fill="#e3a056" stroke="#8e643e" stroke-width="4"/>
+  <path d="M884 415L851 421 817 405" fill="none" stroke="#e3a056" stroke-width="16" stroke-linecap="round"/>
+  <path d="M929 420L946 446" fill="none" stroke="#e3a056" stroke-width="16" stroke-linecap="round"/>
+  <path d="M903 391V405" stroke="#b77957" stroke-width="14"/>
+  <ellipse cx="905" cy="371" rx="23" ry="27" fill="#bc8464"/>
+  <path d="M882 369Q879 338 907 342Q933 341 928 370L918 355 888 357Z" fill="#353236"/>
+  <path d="M889 381q7 5 12 0" stroke="#724636" stroke-width="2" fill="none"/>
+  <rect x="790" y="388" width="33" height="20" rx="3" fill="#c7edff" stroke="#37617e" stroke-width="2" transform="rotate(13 806 398)"/>
+  <!-- Lower hull lip emphasizes the open section. -->
+  <path d="M282 547H988" stroke="#2e566f" stroke-width="7"/>
+  <path d="M322 564H551M716 564H947" stroke="#b9d7e8" stroke-width="5" stroke-linecap="round"/>
+</svg>

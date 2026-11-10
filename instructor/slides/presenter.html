@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Presenter controls</title><link rel="stylesheet" href="/presenter.css"><script src="/window-sync.js" defer></script><script src="/presenter.js" defer></script></head>
+<body><main>
+<nav class="presenter-controls" aria-label="Projection controls"><button id="open-projection" type="button">Open projection window</button><button id="presenter-previous" type="button" aria-label="Previous slide" title="Previous" disabled>←</button><button id="presenter-next" type="button" aria-label="Next slide" title="Next" disabled>→</button><button id="presenter-fullscreen" type="button" aria-label="Toggle projection fullscreen" title="Fullscreen on/off" aria-pressed="false" disabled>⛶</button></nav>
+<output id="presenter-slide-count" class="slide-counter" aria-label="Current slide and total">— / —</output>
+<section id="current-timer" class="current-timer" aria-label="Current section timer" hidden><strong id="current-timer-value">00:00</strong><div class="timer-controls"><button id="timer-toggle" type="button" aria-label="Start current timer" title="Start">▶</button><button id="timer-reset" type="button" aria-label="Reset current timer" title="Reset">↺</button></div></section>
+</main></body></html>
