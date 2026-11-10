@@ -29,8 +29,9 @@ const referenceCSS = embed(fs.readFileSync(path.join(SOURCE,'animations/llm-orig
 reference = reference.replace("const sheet=document.createElement('link');sheet.rel='stylesheet';sheet.href='/animations/llm-original.css';", 'const sheet=document.createElement("style");sheet.textContent='+JSON.stringify(referenceCSS)+';');
 reference = reference.replace("sheet.addEventListener('load',()=>{this.ready=true;this.animation.stop();this.setActive(this.active)});", 'this.ready=true;this.animation.stop();this.setActive(this.active);');
 let runtime = fs.readFileSync(path.join(SOURCE,'slides.js'),'utf8');
-runtime = runtime.replace("const presenterConnection = globalThis.OdysseySync?.connect('audience');", 'const presenterConnection = null; // No public presenter/control bridge.');
-runtime = runtime.replace(/\s*if \(event\.key\.toLowerCase\(\) === 'p'\) window\.open\([^\n]+\);/, '');
+if (runtime.includes('OdysseySync') || runtime.includes('presenterConnection') || /window\.open\([^\n]*presenter/.test(runtime)) {
+  throw new Error('The single-window presentation must not depend on a second controller window.');
+}
 const fetchStart = runtime.indexOf("fetch('/links.json')");
 const fetchEnd = runtime.indexOf('restorePosition();',fetchStart);
 if (fetchStart < 0 || fetchEnd < 0) throw new Error('Public runtime boundary not found');

@@ -74,7 +74,7 @@ const healthy = async (url, predicate) => {
   } catch { return false; }
 };
 
-console.log('Starting local slides/controller: npm run slides');
+console.log('Starting local slides: npm run slides');
 start('Slides', ['run', 'slides']);
 console.log('Starting local service: npm run start');
 start('Service', ['run', 'start']);
@@ -83,7 +83,7 @@ console.log('Waiting for slides on 8100 and the checked North Star Supply servic
 let ready = false;
 for (let attempt = 0; attempt < 60 && !stopping; attempt++) {
   const [slidesReady, serviceReady] = await Promise.all([
-    healthy('http://127.0.0.1:8100/start', async response => (await response.text()).includes('Launch presentation')),
+    healthy('http://127.0.0.1:8100/', async response => (await response.text()).includes('Agent Odyssey with Engineering Excellence')),
     healthy('http://127.0.0.1:8000/health', async response => {
       const body = await response.json();
       return body.status === 'ok' && body.service === 'north-star-supply' && body.demo === true;
@@ -99,7 +99,7 @@ if (stopping) {
   console.error('Timed out waiting for the exact local slides and synthetic service. No tunnel was started.');
   await stop(1);
 } else {
-  console.log('\nSlides:     http://127.0.0.1:8100/start');
+  console.log('\nSlides:     http://127.0.0.1:8100/');
   console.log('Service:    http://127.0.0.1:8000');
   console.log('Starting organiser-approved sharing: npm run share');
   console.log('Only the checked API service on port 8000 is shared. Keep this terminal open; Ctrl+C closes all three.');

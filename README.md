@@ -14,7 +14,7 @@ See [RESOURCES.md](RESOURCES.md) for slides, initial kit, correction and all not
 - [PDF](https://worldline.github.io/agent-odyssey-workshop/agent-odyssey.pdf)
 - [Harness initial kit](harness/starter/) and [service correction](harness/solution/)
 - [Notebook index](notebooks/README.md): four Google-hosted Colab links and four local Jupyter files.
-- [Facilitator bundle](instructor/): local slides/controller, service launcher and ngrok instructions; excluded from Pages.
+- [Facilitator bundle](instructor/): local slides with integrated controls, service launcher and ngrok instructions; excluded from Pages.
 
 ## Start
 
@@ -26,7 +26,7 @@ For Jupyter, choose a Python 3.11+ kernel; the setup cells use %pip and an envir
 
 ## Scope of hosting
 
-GitHub Pages contains **only the self-contained presentation and PDF**. The facilitator bundle is source-only and is not part of the Pages artifact. No service, frontend, notebooks or repository asset directories are deployed there. Presentation images are embedded in its HTML. Other resources remain in GitHub; Colab notebooks are maintained in Google and accessed through the Drive links in the notebook index, not repository .ipynb copies. There is no presenter console or Chrome control bridge in the public presentation.
+GitHub Pages contains **only the self-contained presentation and PDF**. The facilitator bundle is source-only and is not part of the Pages artifact. No service, frontend, notebooks or repository asset directories are deployed there. Presentation images are embedded in its HTML. Other resources remain in GitHub; Colab notebooks are maintained in Google and accessed through the Drive links in the notebook index, not repository .ipynb copies. Navigation and timing controls are an auto-hiding footer in the same public presentation window. There is no separate presenter console or Chrome control bridge.
 
 ## Rebuild
 

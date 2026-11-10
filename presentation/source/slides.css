@@ -74,17 +74,17 @@ button { font-family: inherit; }
 .resource-slot { display: flex; gap: 14px; align-items: center; color: var(--muted); font-size: 20px; }
 .resource-slot strong { color: var(--amber); }
 .resource-link a { color: var(--cyan); }
-.deck-controls { position: fixed; z-index: 4; left: 40px; right: 40px; bottom: 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--muted); font-size: 16px; }
+.deck-controls { position: fixed; z-index: 20; left: 50%; right: auto; bottom: calc(env(safe-area-inset-bottom, 0px) + 12px); transform: translateX(-50%); max-width: calc(100vw - 24px); display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 7px 10px; color: var(--muted); font-size: 16px; border: 1px solid #668da4; border-radius: 16px; background: rgba(4, 15, 28, .96); box-shadow: 0 5px 22px #0008; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: 1; visibility: visible; transition: opacity .22s ease, transform .22s ease, visibility .22s; }
 .navigation { display: flex; align-items: center; gap: 8px; }
-.navigation, .persistent-timer, #slide-title { padding: 6px 10px; background: rgba(4, 15, 28, .96); border: 1px solid #668da4; border-radius: 12px; box-shadow: 0 5px 22px #0008; backdrop-filter: blur(10px); }
-.navigation button { cursor: pointer; background: #102a40; border: 1px solid #557990; border-radius: 7px; color: var(--ink); font-size: 18px; padding: 5px 11px; }
+.navigation, .persistent-timer, #slide-title { padding: 0; background: transparent; border: 0; border-radius: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.navigation button, .persistent-timer button { min-width: 42px; min-height: 40px; cursor: pointer; background: #102a40; border: 1px solid #557990; border-radius: 8px; color: var(--ink); font-size: 18px; padding: 6px 11px; touch-action: manipulation; }
 .navigation button:disabled { opacity: .4; cursor: default; }
-#counter { min-width: 44px; text-align: center; color: var(--ink); font-weight: 650; }
-.navigation, #slide-title, .persistent-timer button { transition: opacity .18s; }
-.controls-hidden .navigation, .controls-hidden #slide-title, .controls-hidden .persistent-timer button { opacity: 0; visibility: hidden; pointer-events: none; }
+#counter { min-width: 52px; text-align: center; color: var(--ink); font-weight: 650; font-variant-numeric: tabular-nums; }
+#slide-title { max-width: min(34vw, 400px); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.controls-hidden .deck-controls { opacity: 0; visibility: hidden; pointer-events: none; transform: translate(-50%, calc(100% + 24px)); }
 [hidden] { display: none !important; }
 :focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; }
 @media (min-height: 900px) and (min-width: 1500px) { [data-essential] { font-size: 32px; } h2[data-essential] { font-size: 36px; } .answer p[data-essential] { font-size: 30px; } .hero-code { font-size: 32px; } .choice strong, .choice span { font-size: 34px; } }
 @media (max-height: 750px) { #deck { top: 88px; bottom: 70px; } .beat { gap: 16px; } h1 { font-size: 56px; } .cover h1 { font-size: 72px; } .kicker { font-size: 18px; } .answer { padding: 14px 18px; } .answer h2 { font-size: 28px; } .large-pair article { padding: 18px; } .hero-code { font-size: 26px; padding: 18px; } }
-@media (max-width: 1100px) { .mission-track { gap: 4px; } .mission-track button { padding: 7px 9px; font-size: 14px; } .choices { gap: 10px; } .choice strong, .choice span { font-size: 26px; } h1 { font-size: 48px; } .cover h1 { font-size: 64px; } #slide-title { display: none; } }
+@media (max-width: 1100px) { .mission-track { gap: 4px; } .mission-track button { padding: 7px 9px; font-size: 14px; } .choices { gap: 10px; } .choice strong, .choice span { font-size: 26px; } h1 { font-size: 48px; } .cover h1 { font-size: 64px; } #slide-title { display: none; } .deck-controls { gap: 7px; padding: 6px 8px; } .navigation { gap: 5px; } .navigation button, .persistent-timer button { min-width: 38px; min-height: 38px; padding: 5px 8px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

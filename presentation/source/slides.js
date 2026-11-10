@@ -1,5 +1,4 @@
 "use strict";
-window.name = "agent-odyssey-audience";
 const slides = [...document.querySelectorAll('.slide')];
 const phases = slides.map(() => 0);
 const states = slides.map((slide) => [...slide.querySelectorAll('.beat')].map(() => ({ revealed: false, selected: null, feedback: null, lessonStep: 0 })));
@@ -120,55 +119,41 @@ function currentTeachingClock() {
 function updateTeachingClockDisplay() {
   const now = Date.now();
   for (const clock of teachingClocks.values()) tickTeachingClock(clock, now);
-  // Time is private to the presenter console; the audience keeps its full header space.
+  // Teaching budgets live in the auto-hiding footer, never over the slide content.
   document.body.classList.remove('has-teaching-clock', 'teaching-clock-large');
   const widget = document.getElementById('teaching-clock'); if (widget) widget.hidden = true;
   return currentTeachingClock();
 }
 
-const presenterConnection = globalThis.OdysseySync?.connect('audience');
-function snapshotForPresenter() {
-  const beats = slides.flatMap(section => [...section.querySelectorAll('.beat')]);
-  const beat = activeBeat(), position = beats.indexOf(beat);
-  const clocks = [...teachingClocks].map(([key, clock]) => ({ id: 'teaching:' + key, label: clock.label, budget: clock.budget, remaining: clock.remaining, running: clock.running, deadline: clock.deadline }));
-  for (const [element, clock] of timers) {
-    const id = element.closest('.beat').dataset.id;
-    clocks.push({ id: 'local:' + id, label: id === 'break' ? 'Orbital Pause' : id.startsWith('tp1') ? 'TP1 work' : 'TP2 work', budget: Number(element.dataset.minutes) * 60, remaining: clock.remaining, running: clock.running, deadline: clock.deadline });
-  }
-  const teaching = slides[current].dataset.teachingClock, local = sectionTimer();
-  return { fullscreen: !!document.fullscreenElement, slideId: beat.dataset.id, title: beat.querySelector('h1').textContent, section: slides[current].dataset.title, position: position + 1, total: beats.length, canPrevious: position > 0, canNext: position < beats.length - 1, activeTimerId: teaching ? 'teaching:' + teaching : local ? 'local:' + local.closest('.beat').dataset.id : null, clocks };
+let controlsHideTimeout;
+let keyboardFocusInControls = false;
+const controlsFooter = document.querySelector('.deck-controls');
+function scheduleControlsAutoHide() {
+  clearTimeout(controlsHideTimeout);
+  controlsHideTimeout = setTimeout(() => {
+    if (keyboardFocusInControls && controlsFooter?.contains(document.activeElement)) return;
+    document.body.classList.add('controls-hidden');
+  }, 5000);
 }
-function publishPresenterState() {
-  presenterConnection?.send({ kind: 'state', state: snapshotForPresenter() });
+function revealControls(fromKeyboard = false) {
+  if (fromKeyboard) keyboardFocusInControls = true;
+  document.body.classList.remove('controls-hidden');
+  scheduleControlsAutoHide();
 }
-function handlePresenterMessage(message) {
-  if (message.role !== 'presenter' || message.target && message.target !== presenterConnection?.peer) return;
-  if (message.kind === 'request-state') { updateTimers(); return; }
-  if (message.kind !== 'command' || message.target !== presenterConnection?.peer) return;
-  if (message.command === 'next') { advance(); return; }
-  if (message.command === 'previous') { previous(); return; }
-  if (message.command === 'fullscreen') { fullscreen().then(() => updateTimers()).catch(() => presenterConnection?.send({ kind: 'fullscreen-blocked' })); return; }
-  if (message.command === 'close-projection') { window.close(); return; }
-  if (message.command === 'goto' && typeof message.slideId === 'string') {
-    const section = slides.findIndex(slide => [...slide.querySelectorAll('.beat')].some(beat => beat.dataset.id === message.slideId));
-    if (section < 0) return;
-    current = section; phases[current] = [...slides[current].querySelectorAll('.beat')].findIndex(beat => beat.dataset.id === message.slideId); render(); return;
-  }
-  if (!['timer-toggle','timer-reset'].includes(message.command) || typeof message.timerId !== 'string') return;
-  if (message.timerId.startsWith('teaching:')) {
-    const clock = teachingClocks.get(message.timerId.slice(9)); if (!clock) return;
-    if (message.command === 'timer-toggle') toggleTeachingClock(clock); else resetTeachingClock(clock);
-    updateTimers(); return;
-  }
-  if (message.timerId.startsWith('local:')) {
-    const id = message.timerId.slice(6);
-    const element = [...timers.keys()].find(element => element.closest('.beat').dataset.id === id);
-    if (element) element.querySelector(message.command === 'timer-toggle' ? '.timer-toggle' : '.timer-reset').click();
-  }
+function revealControlsFromPointer() {
+  keyboardFocusInControls = false;
+  revealControls(false);
 }
-presenterConnection?.listen(handlePresenterMessage);
-window.addEventListener('pagehide', () => { presenterConnection?.send({ kind: 'closed' }); presenterConnection?.close(); });
-document.addEventListener('fullscreenchange', () => publishPresenterState());
+document.addEventListener('pointermove', revealControlsFromPointer, { passive: true });
+document.addEventListener('pointerdown', revealControlsFromPointer, { passive: true });
+document.addEventListener('touchstart', revealControlsFromPointer, { passive: true });
+document.addEventListener('keydown', event => revealControls(event.key === 'Tab'), true);
+document.addEventListener('focusout', () => setTimeout(() => {
+  if (!controlsFooter?.contains(document.activeElement)) {
+    keyboardFocusInControls = false;
+    scheduleControlsAutoHide();
+  }
+}, 0));
 
 function stopFlows() {
   flowRunId += 1;
@@ -202,7 +187,6 @@ function updateTimers() {
     for (const display of element.closest(".beat").querySelectorAll("[data-timer-display]")) display.textContent = element.querySelector(".timer-value").textContent.padStart(5, "0");
   }
   const teachingClock = updateTeachingClockDisplay();
-  publishPresenterState();
   const element = sectionTimer();
   const bar = document.getElementById("persistent-timer");
   if (!bar) return;
@@ -798,19 +782,30 @@ function crewApiLane(a, b, bounds, from, to, hub = 'colab', delegation = false) 
     label: delegation ? (returning ? 'result' : 'task') : returning ? (from === 'llm' ? 'reply' : 'result') : (to === 'llm' ? 'messages' : 'tool call') };
 }
 
+function crewLocalRect(rect, bounds, sx, sy) {
+  return {left:(rect.left-bounds.left)/sx,right:(rect.right-bounds.left)/sx,top:(rect.top-bounds.top)/sy,bottom:(rect.bottom-bounds.top)/sy,width:rect.width/sx,height:rect.height/sy};
+}
+
 const nativeCrewControllers = new WeakMap();
 let crewMarkerId = 0;
 class NativeCrewFlow {
   constructor(root) {
     this.root = root; this.area = root.querySelector('.crew-flow-nodes'); this.svg = root.querySelector('.crew-flow-wires');
+    this.viewport = root.querySelector('.crew-flow-viewport');
     this.nodes = new Map([...root.querySelectorAll('[data-crew-node]')].map(node => [node.dataset.crewNode,node]));
     this.caption = root.querySelector('.crew-flow-caption'); this.steps = JSON.parse(root.dataset.crewSteps); this.edges = JSON.parse(root.dataset.crewEdges);
     this.marker = 'crew-flow-arrow-' + (++crewMarkerId); this.paths = []; this.stageIndex = 0; this.running = false; this.timers = new Set();
-    if (typeof ResizeObserver !== 'undefined') { this.resize = new ResizeObserver(() => { if (this.running) this.draw(); }); this.resize.observe(this.area); }
+    if (typeof ResizeObserver !== 'undefined') { this.resize = new ResizeObserver(() => { if (this.running) this.draw(); }); this.resize.observe(this.viewport || this.area); }
   }
   later(action, delay) { const id = setTimeout(() => { this.timers.delete(id); if (this.running) action(); }, delay); this.timers.add(id); }
   draw() {
-    const bounds = this.area.getBoundingClientRect(); if (!bounds.width || !bounds.height) return;
+    if (this.viewport) {
+      const scale = Math.min(1,this.viewport.clientWidth/1200,this.viewport.clientHeight/430);
+      this.area.style.transform = 'translate(-50%,-50%) scale('+scale+')';
+    }
+    const physical = this.area.getBoundingClientRect(); if (!physical.width || !physical.height) return;
+    const sx = this.viewport ? physical.width/this.area.offsetWidth : 1, sy = this.viewport ? physical.height/this.area.offsetHeight : 1;
+    const bounds = this.viewport ? {left:0,top:0,width:this.area.offsetWidth,height:this.area.offsetHeight} : physical;
     const ns = 'http://www.w3.org/2000/svg'; this.svg.replaceChildren(); this.svg.setAttribute('viewBox','0 0 '+bounds.width+' '+bounds.height);
     const defs = document.createElementNS(ns,'defs'), marker = document.createElementNS(ns,'marker'), tip = document.createElementNS(ns,'path');
     for (const [key,value] of Object.entries({id:this.marker,markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:'auto'})) marker.setAttribute(key,value);
@@ -822,7 +817,8 @@ class NativeCrewFlow {
     this.paths = [];
     for (const [from,to] of this.edges) {
       const first = this.nodes.get(from), second = this.nodes.get(to); if (!first || !second) continue;
-      const a = first.getBoundingClientRect(), b = second.getBoundingClientRect();
+      const rawA = first.getBoundingClientRect(), rawB = second.getBoundingClientRect();
+      const a = this.viewport ? crewLocalRect(rawA,physical,sx,sy) : rawA, b = this.viewport ? crewLocalRect(rawB,physical,sx,sy) : rawB;
       const ac = [a.left+a.width/2-bounds.left,a.top+a.height/2-bounds.top], bc = [b.left+b.width/2-bounds.left,b.top+b.height/2-bounds.top];
       const horizontal = Math.abs(bc[0]-ac[0]) > Math.abs(bc[1]-ac[1]);
       const reciprocal = this.edges.some(edge => edge[0]===to && edge[1]===from), offset = reciprocal ? (from < to ? 5 : -5) : 0;
@@ -1006,7 +1002,18 @@ function previous() {
   else if (current > 0) { current -= 1; phases[current] = slides[current].querySelectorAll('.beat').length - 1; }
   render();
 }
-async function fullscreen() { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); }
+async function fullscreen() {
+  const active = document.fullscreenElement || document.webkitFullscreenElement;
+  if (active) {
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (!exit) throw new Error('Fullscreen is not supported in this browser.');
+    const result = exit.call(document); if (result?.then) await result;
+    return;
+  }
+  const enter = document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen;
+  if (!enter) throw new Error('Fullscreen is not supported in this browser.');
+  const result = enter.call(document.documentElement); if (result?.then) await result;
+}
 document.getElementById('next').addEventListener('click', advance);
 document.getElementById('previous').addEventListener('click', previous);
 document.getElementById('fullscreen').addEventListener('click', () => fullscreen().catch(() => {}));
@@ -1031,7 +1038,6 @@ document.addEventListener('keydown', (event) => {
   if (['ArrowRight', 'Enter', ' ', 'PageDown'].includes(event.key)) { event.preventDefault(); advance(); }
   if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); previous(); }
   if (event.key.toLowerCase() === 'f') fullscreen().catch(() => {});
-  if (event.key.toLowerCase() === 'p') window.open('/presenter', 'agent-odyssey-presenter', 'popup,width=1150,height=850');
   if (/^[0-9]$/.test(event.key)) {
     const index = event.key === "0" ? 9 : Number(event.key) - 1;
     if (index < slides.length) { current = index; render(); }
@@ -1106,3 +1112,4 @@ fetch('/links.json').then((response) => response.json()).then((links) => {
 }).catch(() => {});
 restorePosition();
 render();
+revealControls();

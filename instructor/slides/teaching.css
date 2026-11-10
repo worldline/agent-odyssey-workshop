@@ -59,7 +59,7 @@ body.has-teaching-clock:not(.teaching-clock-large) .deck-brand { right: 214px; }
 body.teaching-clock-large .demo-inviting-robot { right: 254px; }
 body.has-teaching-clock.controls-hidden #persistent-timer { visibility: hidden; }
 
-.audience-mode .deck-controls, .audience-mode #teaching-clock, .audience-mode [data-timer-display] { display: none !important; }
+.audience-mode #teaching-clock, .audience-mode [data-timer-display] { display: none !important; }
 .audience-mode .deck-brand { right: 40px; }
 .audience-mode .demo-inviting-robot { right: 4px; }
 .teaching { justify-content: flex-start; gap: 13px; }

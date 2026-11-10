@@ -19,6 +19,7 @@ try {
   await page.goto(origin,{waitUntil:'load',timeout:60000});
   await page.emulateMedia({media:'screen'});
   await page.waitForFunction(()=>globalThis.AgentOdysseyExport?.ids?.length>0);
+  await page.addStyleTag({ content: '.deck-controls { display: none !important; }' });
   const ids=await page.evaluate(()=>AgentOdysseyExport.ids);
   const output=await PDFDocument.create();
   for (const id of ids) {
