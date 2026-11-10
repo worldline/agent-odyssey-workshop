@@ -1,5 +1,9 @@
 # Agent Odyssey — Worldline engineering workshop
 
+<p align="center">
+  <img src="assets/agent-odyssey-banner.jpg" alt="Agent Odyssey — the Worldline engineering crew prepares for its next AI mission" width="960">
+</p>
+
 Build a payment service with an agentic coding harness, then consume it through a Pricing Agent and a DeepAgent with Pricing/Policy subagents. **All payments, fees and merchant data are fictional.**
 
 ## Resources
