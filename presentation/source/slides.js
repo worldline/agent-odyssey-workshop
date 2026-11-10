@@ -144,9 +144,16 @@ function revealControlsFromPointer() {
   keyboardFocusInControls = false;
   revealControls(false);
 }
+function hideControlsAfterSlideClick(event) {
+  if (controlsFooter?.contains(event.target)) return;
+  keyboardFocusInControls = false;
+  clearTimeout(controlsHideTimeout);
+  document.body.classList.add('controls-hidden');
+}
 document.addEventListener('pointermove', revealControlsFromPointer, { passive: true });
 document.addEventListener('pointerdown', revealControlsFromPointer, { passive: true });
 document.addEventListener('touchstart', revealControlsFromPointer, { passive: true });
+document.addEventListener('click', hideControlsAfterSlideClick, true);
 document.addEventListener('keydown', event => revealControls(event.key === 'Tab'), true);
 document.addEventListener('focusout', () => setTimeout(() => {
   if (!controlsFooter?.contains(document.activeElement)) {
