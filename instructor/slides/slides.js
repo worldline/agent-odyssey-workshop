@@ -140,14 +140,19 @@ function revealControls(fromKeyboard = false) {
   document.body.classList.remove('controls-hidden');
   scheduleControlsAutoHide();
 }
-function revealControlsFromPointer() {
+function toggleControlsOnClick() {
   keyboardFocusInControls = false;
-  revealControls(false);
+  if (document.body.classList.contains('controls-hidden')) {
+    revealControls();
+  } else {
+    clearTimeout(controlsHideTimeout);
+    document.body.classList.add('controls-hidden');
+  }
 }
-document.addEventListener('pointermove', revealControlsFromPointer, { passive: true });
-document.addEventListener('pointerdown', revealControlsFromPointer, { passive: true });
-document.addEventListener('touchstart', revealControlsFromPointer, { passive: true });
-document.addEventListener('keydown', event => revealControls(event.key === 'Tab'), true);
+document.addEventListener('click', toggleControlsOnClick, true);
+document.addEventListener('keydown', event => {
+  if (event.key === 'Tab') revealControls(true);
+}, true);
 document.addEventListener('focusout', () => setTimeout(() => {
   if (!controlsFooter?.contains(document.activeElement)) {
     keyboardFocusInControls = false;
