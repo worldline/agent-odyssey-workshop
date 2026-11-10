@@ -9,7 +9,7 @@ See [RESOURCES.md](RESOURCES.md) for slides, initial kit, correction and all not
 - [Web presentation](https://worldline.github.io/agent-odyssey-workshop/)
 - [PDF](https://worldline.github.io/agent-odyssey-workshop/agent-odyssey.pdf)
 - [Harness initial kit](harness/starter/) and [service correction](harness/solution/)
-- [Notebook index](notebooks/README.md): four Colab notebooks and four local Jupyter variants.
+- [Notebook index](notebooks/README.md): four Google-hosted Colab links and four local Jupyter files.
 
 ## Start
 
@@ -21,13 +21,13 @@ For Jupyter, choose a Python 3.11+ kernel; the setup cells use %pip and an envir
 
 ## Scope of hosting
 
-GitHub Pages contains **only the self-contained presentation and PDF**. No service, frontend, notebooks or repository asset directories are deployed there. Presentation images are embedded in its HTML. Other resources remain in GitHub; Colab opens notebook files from this repository. There is no presenter console or Chrome control bridge in the public presentation.
+GitHub Pages contains **only the self-contained presentation and PDF**. No service, frontend, notebooks or repository asset directories are deployed there. Presentation images are embedded in its HTML. Other resources remain in GitHub; Colab notebooks are maintained in Google and accessed through the Drive links in the notebook index, not repository .ipynb copies. There is no presenter console or Chrome control bridge in the public presentation.
 
 ## Rebuild
 
-Node.js 22+, Python 3.11+. Run npm ci, npm run notebooks:build, npm run notebooks:check. For presentation/PDF: npx playwright install chromium, then npm run build:pages. The browser is used only to render the PDF. GitHub Actions rebuilds/deploys the same presentation-only artifact on main.
+Node.js 22+, Python 3.11+. Run npm ci, then npm run notebooks:check for the four local Jupyter notebooks. For presentation/PDF: npx playwright install chromium, then npm run build:pages. The browser is used only to render the PDF. GitHub Actions rebuilds/deploys the same presentation-only artifact on main.
 
-The PDF captures representative animation states; use the web presentation for the complete animated mechanisms. The Colab/Jupyter variants share exercise code and differ only in environment setup. Notebook outputs are cleared before publication.
+The PDF captures representative animation states; use the web presentation for the complete animated mechanisms. Google Colab is the primary editing location for its four notebooks. Exercise-content changes must be mirrored into the four repository Jupyter notebooks while preserving their local setup. Outputs are cleared before publication. No Colab copies or generator are kept here; Google authentication is not added to CI.
 
 Validation distinguishes syntax/import/offline model-simulation checks from actual Colab/Mistral execution. The latter is a manual presenter/participant check and can consume credits; CI performs no paid inference.
 

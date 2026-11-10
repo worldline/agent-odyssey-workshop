@@ -1,22 +1,20 @@
 # Agent notebooks
 
-Four browser-hosted Colab variants and four local Jupyter variants. Environment setup differs; exercise code is generated from shared content. Every file starts with cleared outputs.
+**Colab notebooks are maintained directly in Google Colab.** This repository stores only the four local Jupyter notebooks. Shared exercise logic is mirrored by the maintainer; environment-specific setup remains different.
 
 | TP | Colab template | Colab correction | Jupyter template | Jupyter correction |
 |---|---|---|---|---|
-| TP1 — Pricing | [Open in Colab](https://colab.research.google.com/github/worldline/agent-odyssey-workshop/blob/main/notebooks/colab/tp1-template.ipynb) | [Open in Colab](https://colab.research.google.com/github/worldline/agent-odyssey-workshop/blob/main/notebooks/colab/tp1-correction.ipynb) | [Download](jupyter/tp1-template.ipynb) | [Download](jupyter/tp1-correction.ipynb) |
-| TP2 — DeepAgents | [Open in Colab](https://colab.research.google.com/github/worldline/agent-odyssey-workshop/blob/main/notebooks/colab/tp2-template.ipynb) | [Open in Colab](https://colab.research.google.com/github/worldline/agent-odyssey-workshop/blob/main/notebooks/colab/tp2-correction.ipynb) | [Download](jupyter/tp2-template.ipynb) | [Download](jupyter/tp2-correction.ipynb) |
-
-## Workshop hosted Colab copies
-
-The active short links point to owner-hosted Drive copies: [TP1 template](https://wrl.li/agent-tp1), [TP1 correction](https://wrl.li/agent-tp1-solution), [TP2 template](https://wrl.li/agent-tp2), [TP2 correction](https://wrl.li/agent-tp2-solution). The source links above remain versioned in GitHub. Check Drive sharing permissions with a participant-like personal Google account; a redirect alone is not proof of notebook access.
+| TP1 — Pricing | [Open Colab](https://colab.research.google.com/drive/1FRyi_XadXG1uDxwxBq3amjozduWyIr6E?#copy=true) | [Open Colab](https://colab.research.google.com/drive/1OcfUxo_CEe-J1tAO9ZYQxo2cpK278umW?#copy=true) | [Jupyter file](jupyter/tp1-template.ipynb) | [Jupyter file](jupyter/tp1-correction.ipynb) |
+| TP2 — DeepAgents | [Open Colab](https://colab.research.google.com/drive/1UcEoBx8Hs4olAIsteLoklu9aEZsiv4tf?#copy=true) | [Open Colab](https://colab.research.google.com/drive/1505Q1ntRog-ZksFYCmsBy_-imFcErLqa?#copy=true) | [Jupyter file](jupyter/tp2-template.ipynb) | [Jupyter file](jupyter/tp2-correction.ipynb) |
 
 ## Start
 
-Colab: personal Gmail; the workshop key is supplied privately and saved as secret MISTRAL_API_KEY with notebook access. No Mistral account or personal billing is required for workshop participants; independent users provide their own API access. Local Jupyter: Python 3.11+ kernel; the notebook uses %pip and an environment variable/masked key prompt, with no google.colab import. Select the matching file; do not copy Colab setup cells to local Jupyter.
+Colab: personal Gmail; the workshop key is supplied privately and saved as MISTRAL_API_KEY in Colab Secrets. No personal Mistral account or billing is required for workshop participants. Independent users provide their own API access. Local Jupyter: Python 3.11+ kernel, %pip installation and an environment variable/masked key prompt; no google.colab import.
 
-Start the [service](../harness/solution/) separately. Local Jupyter on its machine can use localhost; Colab needs the direct public HTTPS backend URL. Each notebook configures its own backend/model and checks them independently. Only live model/probe cells consume API allowance. API access/free credits are not guaranteed.
+Start the [service](../harness/solution/) separately. Local Jupyter on its machine can use localhost; Colab needs the direct public HTTPS backend URL. Service/model checks are separate. Live model cells consume API allowance.
 
-TP2 uses DeepAgents 0.7.34 with two isolated dictionary subagents and task delegation. The workshop profile disables the default general-purpose subagent and unrelated filesystem/planning tools. Evidence captures actual specialist HTTP calls during each mission. This tiny scenario demonstrates boundaries, not a requirement for multi-agent design.
+## Maintenance
 
-The presenter will verify Colab opening/imports and actual Mistral execution separately. Offline simulation checks are not live-provider validation.
+Edit the original Colab template/correction in Google, not a participant copy. After each exercise-content change, update the corresponding Jupyter notebook and commit it. Preserve local setup instead of copying Colab userdata/installation cells. Clear outputs and check syntax before publication. There is no Colab notebook generator or authenticated Google sync in CI.
+
+The participant links use the requested ?#copy=true form. Google sharing permissions must allow the intended participants to open their copies. CI checks only the four repository Jupyter files; live Colab/Mistral validation is separate.

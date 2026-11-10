@@ -10,7 +10,6 @@
     "harness/solution"
   ],
   "scripts": {
-    "notebooks:build": "python3 tooling/build_notebooks.py",
     "notebooks:check": "python3 tooling/check_notebooks.py",
     "build:presentation": "node tooling/build_presentation.mjs",
     "build:pdf": "node tooling/export_pdf.mjs",
