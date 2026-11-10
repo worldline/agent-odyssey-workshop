@@ -9,7 +9,7 @@
 
 ## Start
 
-Colab: personal Gmail; the workshop key is supplied privately and saved as MISTRAL_API_KEY in Colab Secrets. No personal Mistral account or billing is required for workshop participants. Independent users provide their own API access. Local Jupyter: Python 3.11+ kernel, %pip installation and an environment variable/masked key prompt; no google.colab import.
+Colab: personal Gmail; the workshop key is supplied privately and saved as MISTRAL_API_KEY in Colab Secrets. No personal Mistral account or billing is required for workshop participants. Independent users provide their own API access. Local Jupyter: Python 3.11+ kernel, %pip installation and an environment variable/masked key prompt; no google.colab import. Requests is pinned to 2.32.4, matching the Google Colab base runtime's exact requirement.
 
 Start the [service](../harness/solution/) separately. Local Jupyter on its machine can use localhost; Colab needs the direct public HTTPS backend URL. Service/model checks are separate. Live model cells consume API allowance.
 
