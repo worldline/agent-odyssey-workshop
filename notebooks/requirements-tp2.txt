@@ -1,0 +1,2 @@
+-r requirements-tp1.txt
+deepagents==0.7.34

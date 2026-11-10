@@ -1,0 +1,24 @@
+{
+  "name": "agent-odyssey-workshop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "harness/solution"
+  ],
+  "scripts": {
+    "notebooks:build": "python3 tooling/build_notebooks.py",
+    "notebooks:check": "python3 tooling/check_notebooks.py",
+    "build:presentation": "node tooling/build_presentation.mjs",
+    "build:pdf": "node tooling/export_pdf.mjs",
+    "build:pages": "npm run build:presentation && npm run build:pdf",
+    "test:service": "npm test --workspace=harness/solution"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2",
+    "pdf-lib": "1.17.1"
+  }
+}

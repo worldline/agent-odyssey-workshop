@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" role="img" aria-labelledby="agent-anatomy-title agent-anatomy-desc">
+  <title id="agent-anatomy-title">Anatomy of a tool-using AI agent</title>
+  <desc id="agent-anatomy-desc">A robot with a brain in a glass jar: the LLM selects actions, tools act, a runtime manages the feedback loop, and current context holds messages and results. Persistent memory and retrieval are optional attachments.</desc>
+  <g id="agent-robot-cutaway">
+    <rect x="445" y="24" width="110" height="93" rx="20" fill="#83f0f411" stroke="#83f0f4" stroke-width="3"/>
+    <rect x="449" y="16" width="102" height="12" rx="5" fill="#c7d9e8"/>
+    <path d="M465 70c-9-12 0-27 11-26 3-16 23-16 27-7 13-9 31 2 27 14 13 3 14 23 4 29-2 12-20 16-27 8-10 10-27 8-30-4-9 1-17-5-12-14Z" fill="#c4bcff55" stroke="#c4bcff" stroke-width="3"/>
+    <path d="M482 47q14 6 9 18m17-24q-8 11 5 17m-41 12q9-4 15 8m18-12q10 4 8 14m11-24q-8 3-7 11" fill="none" stroke="#c4bcff" stroke-width="2"/>
+    <path d="M477 118v17m46-17v17" stroke="#c7d9e8" stroke-width="8"/>
+    <rect x="406" y="135" width="188" height="192" rx="24" fill="#10283c" stroke="#c7d9e8" stroke-width="3"/>
+    <path d="M438 153v157m-7-140h14m-14 25h14m-14 25h14m-14 25h14m-14 25h14" stroke="#c4bcff" stroke-width="3"/>
+    <circle cx="500" cy="176" r="27" fill="#ffd18b22" stroke="#ffd18b" stroke-width="2"/>
+    <path d="m500 156 5 13 14 1-11 9 4 14-12-8-12 8 4-14-11-9 14-1Z" fill="#ffd18b"/>
+    <path d="M500 83v54m-25 69v32m50-32v32" fill="none" stroke="#83f0f4" stroke-width="2" stroke-dasharray="4 4"/>
+    <rect x="455" y="241" width="100" height="33" rx="6" fill="#83f0f422" stroke="#83f0f4" stroke-width="2"/>
+    <path d="M466 251h15m7 0h17m7 0h30m-76 12h28m8 0h12m8 0h20" stroke="#83f0f4" stroke-width="3"/>
+    <circle cx="393" cy="164" r="14" fill="#10283c" stroke="#c7d9e8" stroke-width="3"/>
+    <path d="M383 174 351 219" stroke="#c7d9e8" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="345" cy="230" r="15" fill="#10283c" stroke="#c7d9e8" stroke-width="3"/>
+    <rect x="311" y="246" width="59" height="39" rx="6" fill="#071522" stroke="#83f0f4" stroke-width="2"/>
+    <path d="m321 257 7 7-7 7m12 0h12" fill="none" stroke="#83f0f4" stroke-width="3"/>
+    <circle cx="607" cy="164" r="14" fill="#10283c" stroke="#c7d9e8" stroke-width="3"/>
+    <path d="M617 174 648 219" stroke="#c7d9e8" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="653" cy="230" r="15" fill="#10283c" stroke="#c7d9e8" stroke-width="3"/>
+    <path d="M645 244v18m8-18v18m8-18v18m-16-7h16" stroke="#83f0f4" stroke-width="3"/>
+    <rect x="597" y="280" width="39" height="42" rx="6" fill="#ffd18b22" stroke="#ffd18b" stroke-width="2" stroke-dasharray="4 3"/>
+    <path d="M605 290h23m-23 9h23m-23 9h23" stroke="#ffd18b" stroke-width="2"/>
+    <rect x="612" y="347" width="42" height="39" rx="6" fill="#83f0f422" stroke="#83f0f4" stroke-width="2" stroke-dasharray="4 3"/>
+    <path d="M621 355h15l7 7v17h-22ZM636 355v8h7" fill="none" stroke="#83f0f4" stroke-width="2"/>
+    <path d="M597 301h-15m30 65q-24 0-37-66" fill="none" stroke="#557990" stroke-width="2" stroke-dasharray="4 4"/>
+    <path d="M458 329 445 377m97-48 13 48" stroke="#c7d9e8" stroke-width="18" stroke-linecap="round"/>
+    <rect x="412" y="378" width="72" height="20" rx="7" fill="#c7d9e8"/>
+    <rect x="540" y="378" width="72" height="20" rx="7" fill="#c7d9e8"/>
+    <path d="M387 408h244" stroke="#557990" stroke-width="3"/>
+  </g>
+  <g font-family="system-ui,sans-serif" fill="#f4f9ff" font-size="30" font-weight="650">
+    <text x="18" y="44">Goal + instructions</text><text x="18" y="149">Tools</text><text x="18" y="283">Runtime / loop</text><text x="18" y="379">Environment</text>
+    <text x="674" y="44">LLM</text><text x="674" y="139">Current context</text><text x="674" y="244">Memory (optional)</text><text x="674" y="340">RAG (optional)</text>
+  </g>
+  <g font-family="system-ui,sans-serif" fill="#c7d9e8" font-size="24">
+    <text x="18" y="73">Task + constraints</text><text x="18" y="178">Read, edit, execute,</text><text x="18" y="205">call APIs</text><text x="18" y="312">Act → observe → repeat</text><text x="18" y="408">Files, services, apps</text>
+    <text x="674" y="73">Choose the next action</text><text x="674" y="168">Messages, state, results</text><text x="674" y="273">Durable information</text><text x="674" y="369">Retrieve external knowledge</text>
+  </g>
+  <g fill="none" stroke="#ffd18b" stroke-width="2">
+    <path d="M313 55Q373 58 476 162"/><path d="M294 169Q317 177 342 216"/><path d="M313 286Q357 275 431 230"/><path d="M309 389H410"/>
+    <path d="M659 52H551"/><path d="M659 152Q618 230 557 256"/><path d="M659 258 634 292"/><path d="M659 355 655 362"/>
+  </g>
+</svg>

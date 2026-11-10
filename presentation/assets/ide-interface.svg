@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 390" role="img" aria-labelledby="ide-ui-title ide-ui-desc" data-native-ide>
+  <title id="ide-ui-title">Code completion and selected file context in an IDE</title>
+  <desc id="ide-ui-desc">An illustrative IDE: an inline suggestion is accepted with Tab; selected open files pricing.js and policy.js are included in the chat context. No real file is read or sent.</desc>
+  <rect x="3" y="32" width="754" height="320" rx="12" fill="#0b2032" stroke="#557990" stroke-width="2"/>
+  <path d="M446 33V351M4 85H445" stroke="#557990" stroke-width="1.5"/>
+  <text x="14" y="23" fill="#ffd18b" font-family="system-ui,sans-serif" font-size="24" font-weight="650">CODE EDITOR</text>
+  <text x="466" y="23" fill="#ffd18b" font-family="system-ui,sans-serif" font-size="24" font-weight="650">CHAT</text>
+  <rect x="15" y="43" width="192" height="34" rx="6" fill="#18364b" stroke="#557990" data-ide-tab="pricing"/>
+  <text x="29" y="67" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="22">pricing.js</text>
+  <rect x="221" y="43" width="209" height="34" rx="6" fill="none" stroke="#557990" data-ide-tab="policy"/>
+  <text x="235" y="67" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="22">policy.js</text>
+  <text x="18" y="129" fill="#f4f9ff" font-family="monospace" font-size="28">function fee(cents) {</text>
+  <text x="18" y="168" fill="#f4f9ff" font-family="monospace" font-size="28" xml:space="preserve" data-ide-typed>  return</text>
+  <g data-ide-suggestion xml:space="preserve" fill="#83f0f4" font-family="monospace" font-size="28">
+    <text x="163" y="168">Math.round(</text>
+    <text x="18" y="207">    cents * 0.012</text>
+    <text x="18" y="246">  ) + 10;</text>
+  </g>
+  <text x="18" y="285" fill="#f4f9ff" font-family="monospace" font-size="28">}</text>
+  <g data-ide-tab-hint>
+    <rect x="18" y="308" width="56" height="28" rx="5" fill="#18364b" stroke="#83f0f4"/>
+    <text x="27" y="328" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="20">Tab</text>
+    <text x="84" y="329" fill="#a9bccd" font-family="system-ui,sans-serif" font-size="22">Accept suggestion</text>
+  </g>
+  <text x="467" y="69" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="22">Selected context</text>
+  <g data-ide-context="pricing">
+    <rect x="464" y="87" width="127" height="31" rx="7" fill="#123e49" stroke="#83f0f4"/>
+    <text x="477" y="109" fill="#83f0f4" font-family="system-ui,sans-serif" font-size="20">pricing.js</text>
+  </g>
+  <g data-ide-context="policy">
+    <rect x="601" y="87" width="143" height="31" rx="7" fill="#123e49" stroke="#83f0f4"/>
+    <text x="614" y="109" fill="#83f0f4" font-family="system-ui,sans-serif" font-size="20">policy.js</text>
+  </g>
+  <g data-ide-chat-user>
+    <rect x="464" y="145" width="255" height="45" rx="8" fill="#18364b"/>
+    <text x="476" y="176" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="25">Explain this fee.</text>
+  </g>
+  <g data-ide-chat-reply>
+    <rect x="479" y="204" width="265" height="88" rx="8" fill="#123e49"/>
+    <text x="491" y="231" fill="#a9bccd" font-family="system-ui,sans-serif" font-size="20">Assistant</text>
+    <text x="491" y="258" fill="#83f0f4" font-family="system-ui,sans-serif" font-size="25">Wallet fee:</text>
+    <text x="491" y="283" fill="#83f0f4" font-family="system-ui,sans-serif" font-size="25">1.2% + 10 cents.</text>
+  </g>
+  <rect x="464" y="309" width="280" height="29" rx="6" fill="#06111e" stroke="#557990"/>
+  <text x="477" y="330" fill="#a9bccd" font-family="system-ui,sans-serif" font-size="20">Ask about selected files…</text>
+  <g data-ide-flying="pricing" fill="#0b2032" stroke="#ffd18b" stroke-width="2">
+    <path d="M0 0h17l7 7v23H0ZM17 0v7h7M5 13h14M5 19h14"/>
+  </g>
+  <g data-ide-flying="policy" fill="#0b2032" stroke="#ffd18b" stroke-width="2">
+    <path d="M0 0h17l7 7v23H0ZM17 0v7h7M5 13h14M5 19h14"/>
+  </g>
+  <text x="14" y="382" fill="#ffd18b" font-family="system-ui,sans-serif" font-size="22" data-ide-caption>Inline completion suggests code. Review before accepting.</text>
+</svg>

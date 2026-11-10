@@ -1,0 +1,2107 @@
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 90%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 48px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-card {
+            width: 100%;
+            max-width: 600px;
+            gap: 32px;
+        }
+
+        .title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 40px;
+            line-height: 1.1;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .definition {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #424242;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .key-concepts {
+            background: #eaf8f5;
+            padding: 32px;
+            border-radius: 12px;
+            border-left: 4px solid #339988;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease 0.9s forwards;
+        }
+
+        .concept-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #111111;
+            margin-bottom: 20px;
+        }
+
+        .concept-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .concept-list li {
+            padding: 12px 0;
+            color: #424242;
+            position: relative;
+            padding-left: 32px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+
+        .concept-list li:nth-child(1) { animation-delay: 1.2s; }
+        .concept-list li:nth-child(2) { animation-delay: 1.4s; }
+        .concept-list li:nth-child(3) { animation-delay: 1.6s; }
+
+        .concept-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #339988;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .visualization-card {
+            width: 100%;
+            max-width: 550px;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .animation-container {
+            width: 520px;
+            height: 380px;
+            background: #fafafa;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease;
+            margin: 0 auto;
+        }
+
+        .animation-container.ready {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .llm-visualization {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .llm-step {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .llm-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-label {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .step-content {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid;
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .architecture-step .step-content {
+            border-left-color: #0f8dac;
+            background: linear-gradient(135deg, #eaf8f5, #d4f1eb);
+        }
+
+        .data-step .step-content {
+            border-left-color: #46beaa;
+            background: linear-gradient(135deg, #eaf8f5, #d4f1eb);
+        }
+
+        .infrastructure-step .step-content {
+            border-left-color: #8FD06E;
+            background: linear-gradient(135deg, #fff7d8, #FFE566);
+        }
+
+        .weights-step .step-content {
+            border-left-color: #4caf50;
+            background: linear-gradient(135deg, #f1f8e9, #c8e6c9);
+        }
+
+        .inference-step .step-content {
+            border-left-color: #0f8dac;
+            background: linear-gradient(135deg, #eaf8f5, #d4f1eb);
+        }
+
+        /* Neural Network Architecture */
+        .neural-network {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .network-layer {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.4s ease;
+        }
+
+        .network-layer.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .neuron {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #0f8dac, #339988);
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(103, 58, 183, 0.3);
+        }
+
+        .connection-line {
+            width: 20px;
+            height: 1px;
+            background: linear-gradient(90deg, #0f8dac, transparent);
+            opacity: 0.6;
+        }
+
+        .tech-specs {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .spec-item {
+            background: rgba(103, 58, 183, 0.1);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0f8dac;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .spec-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Training Data Pipeline */
+        .data-pipeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .data-source {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(33, 150, 243, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 300px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .data-source.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .data-icon {
+            width: 20px;
+            height: 20px;
+            background: #46beaa;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .data-text {
+            flex: 1;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #339988;
+        }
+
+        .data-volume {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .processing-arrow {
+            color: #46beaa;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 5px 0;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .processing-arrow.visible {
+            opacity: 1;
+        }
+
+        /* Infrastructure Visualization */
+        .infrastructure {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .gpu-cluster {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 4px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.6s ease;
+        }
+
+        .gpu-cluster.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gpu-unit {
+            width: 20px;
+            height: 15px;
+            background: linear-gradient(135deg, #8FD06E, #339988);
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(255, 152, 0, 0.3);
+            animation: gpuPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes gpuPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .infrastructure-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .stat-item {
+            background: rgba(255, 152, 0, 0.1);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #339988;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Weight Matrices */
+        .weight-visualization {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .weight-matrix {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 2px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.6s ease;
+        }
+
+        .weight-matrix.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .weight-cell {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            border-radius: 2px;
+            opacity: 0.8;
+            animation: weightUpdate 3s ease-in-out infinite;
+        }
+
+        @keyframes weightUpdate {
+            0%, 100% { background: linear-gradient(135deg, #4caf50, #388e3c); }
+            50% { background: linear-gradient(135deg, #81c784, #66bb6a); }
+        }
+
+        .weight-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .weight-item {
+            background: rgba(76, 175, 80, 0.1);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #388e3c;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .weight-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Inference Process */
+        .inference-process {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .token-flow {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+        }
+
+        .token-flow.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .token {
+            background: #0f8dac;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .flow-arrow {
+            color: #0f8dac;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .probability-bars {
+            display: flex;
+            gap: 4px;
+            align-items: end;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.6s ease;
+        }
+
+        .probability-bars.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .prob-bar {
+            width: 8px;
+            background: linear-gradient(to top, #0f8dac, #46beaa);
+            border-radius: 2px;
+        }
+
+        .inference-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .inference-item {
+            background: rgba(244, 67, 54, 0.1);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #339988;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .inference-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .disclaimer-card {
+            background: #fff7d8;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #8FD06E;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            max-width: 520px;
+            width: 100%;
+        }
+
+        .disclaimer-card.ready {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .disclaimer-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #339988;
+            margin-bottom: 8px;
+        }
+
+        .disclaimer-text {
+            font-size: 0.95rem;
+            color: #444444;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                max-width: 1200px;
+            }
+
+            .card {
+                padding: 32px;
+                height: auto;
+            }
+
+            .title {
+                font-size: 2.4rem;
+            }
+
+            .definition {
+                font-size: 1.1rem;
+            }
+
+            .concept-title {
+                font-size: 1.2rem;
+            }
+
+            .concept-list li {
+                font-size: 1rem;
+            }
+
+            .animation-container {
+                width: 100%;
+                max-width: 450px;
+                height: 320px;
+            }
+
+            .llm-visualization {
+                width: calc(100% - 30px);
+                height: calc(100% - 30px);
+            }
+
+            .step-label {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+
+            .step-content {
+                padding: 20px;
+                min-height: 160px;
+            }
+
+            .disclaimer-card {
+                max-width: 450px;
+            }
+        }
+
+        /* High contrast mode and accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .llm-step, .network-layer, .spec-item, .data-source, .processing-arrow, .gpu-cluster, 
+            .stat-item, .weight-matrix, .weight-item, .token-flow, .probability-bars, .inference-item,
+            .title, .definition, .key-concepts,
+            .concept-list li, .animation-container, .disclaimer-card {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    
+/* Design System v2: embedded so every slide works from file://. */
+:root {
+  --wl-mint:#46beaa; --wl-mint-dark:#339988;
+  --wl-mint-dim:rgba(70,190,170,.12); --wl-green:#8FD06E;
+  --wl-bg:#f5f5f5; --wl-surface:#fff; --wl-border:#e0e0e0;
+  --wl-text:#111; --wl-muted:#666;
+}
+*,*::before,*::after {box-sizing:border-box}
+html,body {width:100%;height:100%;margin:0;background:var(--wl-bg)!important;
+  color:var(--wl-text);font-family:Inter,Arial,Helvetica,sans-serif!important;
+  -webkit-font-smoothing:antialiased}
+.scene {position:fixed!important;inset:0!important;overflow:hidden!important;
+  background:var(--wl-bg)!important}
+.scene.container {width:100%!important;max-width:none!important;height:100%!important;
+  margin:0!important;padding:3.5vh 4vw!important;gap:2.5vw!important;
+  grid-template-columns:1fr 1fr!important;align-items:stretch!important;
+  justify-items:stretch!important;display:grid!important}
+.card {width:100%!important;max-width:none!important;min-width:0!important;
+  height:100%!important;padding:clamp(20px,2vw,40px)!important;
+  background:#fff!important;border:1.5px solid var(--wl-border)!important;
+  border-radius:20px!important;box-shadow:0 4px 12px rgba(0,0,0,.08)!important}
+.content-card {gap:clamp(10px,1.2vh,25px)!important;justify-content:center!important}
+.visualization-card {gap:clamp(10px,1.2vh,25px)!important;justify-content:center!important}
+.title {font-size:clamp(3rem,3.5vw,4.4rem)!important;line-height:1.1!important;
+  color:#111!important;letter-spacing:-.035em!important;margin-bottom:clamp(8px,1.4vh,22px)!important}
+.subtitle,.title span {color:var(--wl-mint-dark)!important}
+.definition,.content-text {font-size:clamp(1.4rem,1.38vw,1.7rem)!important;
+  line-height:1.7!important;color:#444!important;margin-bottom:clamp(8px,2vh,32px)!important}
+.key-concepts {background:var(--wl-mint-dim)!important;
+  border-left:4px solid var(--wl-mint)!important;border-radius:12px!important;
+  padding:clamp(20px,1.7vw,32px)!important}
+.concept-title {color:var(--wl-mint-dark)!important;font-size:1.55rem!important}
+.concept-list li {font-size:clamp(1.3rem,1.06vw,1.45rem)!important;
+  line-height:1.55!important;padding-top:.4em!important;padding-bottom:.4em!important}
+.concept-list li::before {color:var(--wl-mint-dark)!important}
+.animation-container {max-width:100%!important;max-height:53vh!important;
+  background:#f5f5f5!important;border:2px solid #e0e0e0!important;
+  border-radius:16px!important}
+.legend,.phase-label {color:#444!important}
+.progress-bar {background:linear-gradient(90deg,#46beaa,#8FD06E)!important}
+.disclaimer-card,.technical-note,.info-box {border-left-color:#46beaa!important;
+  background:rgba(70,190,170,.09)!important}
+.disclaimer-title,.technical-title {color:#339988!important}
+.disclaimer-text,.technical-list li {color:#444!important}
+.scene.containment-container {width:100%!important;height:100%!important;
+  max-width:none!important;max-height:none!important}
+.ml-container {background:rgba(70,190,170,.13)!important}
+.nn-container {background:rgba(143,208,110,.15)!important}
+.dl-container {background:rgba(15,141,172,.12)!important}
+.nlp-container {background:rgba(255,229,102,.25)!important}
+.llm-container {background:rgba(70,190,170,.24)!important}
+.ml-label .layer-title,.nn-label .layer-title,.dl-label .layer-title,
+.nlp-label .layer-title,.llm-content .layer-title {color:#339988!important}
+.layer-title {font-family:Inter,Arial,sans-serif!important}
+.layer-description {font-family:Inter,Arial,sans-serif!important}
+.checkbox {color:#339988!important}
+.overview-title {color:#339988!important}
+.topic-item {border-left-color:#46beaa!important;background:rgba(70,190,170,.08)!important}
+.scene.container .content-card .title {flex-shrink:0}
+.scene.container .content-card,.scene.container .visualization-card {min-height:0!important}
+.scene.container .visualization-card {overflow:hidden!important}
+.animation-title,.step-label,.phase-label {color:#339988!important}
+.layer-description {color:#555!important}
+.topic-item {padding:20px!important}
+.topic-text {font-size:1.4rem!important}
+.containment-container .container-layer {border:1.5px solid rgba(70,190,170,.35)!important}
+.containment-container .layer-description {font-size:1.3rem!important}
+/* The overview has a single column; the technical scenes have two. */
+.scene.overview-scene {display:flex!important;align-items:center!important;
+  justify-content:center!important;padding:4vh 5vw!important}
+.overview-scene .overview-list {padding:2rem 2.5rem!important;max-width:850px!important}
+.overview-scene .topic-item {margin-bottom:.85rem!important}
+/* Restore the original drawing area when a source scene was authored larger. */
+.scene.container .animation-container {flex-shrink:0}
+.scene.container .content-text {font-size:clamp(1.3rem,1.2vw,1.55rem)!important}
+.scene.container .visualization-card .disclaimer-text {font-size:1.15rem!important;line-height:1.5!important}
+.scene.container .visualization-card .technical-list li {font-size:1.05rem!important}
+/* The player zooms its iframe to 110%; leave an inset safety area so cards,
+   long notes and diagram captions remain inside the recorded frame. */
+.scene.container {padding:2vh 2.6vw!important;gap:1.8vw!important}
+.scene.container .card {padding:clamp(20px,1.5vw,30px)!important}
+.scene.container .content-card {gap:clamp(6px,.75vh,12px)!important}
+.scene.container .visualization-card {gap:clamp(6px,.75vh,12px)!important}
+.scene.container .title {font-size:clamp(3rem,3.1vw,3.8rem)!important}
+.scene.container .definition {font-size:clamp(1.4rem,1.24vw,1.55rem)!important;
+  margin-bottom:clamp(6px,1vh,14px)!important}
+.scene.container .key-concepts {padding:clamp(20px,1.3vw,25px)!important}
+.scene.container .concept-title {margin-bottom:10px!important}
+.scene.container .concept-list li {font-size:1.3rem!important;
+  line-height:1.5!important;padding-top:.25em!important;padding-bottom:.25em!important}
+.scene.container .animation-container {max-height:49vh!important}
+.scene.container .visualization-card .disclaimer-card {padding:14px!important}
+.scene.container .visualization-card .technical-note {padding:14px!important}
+.scene.container .visualization-card .legend {gap:10px!important}
+.scene.overview-scene {padding:4vh 5vw!important}
+/* Showcase cards: elevated editorial content, accented visualization, tinted
+   concept inset. These are surfaces only; source animation states stay intact. */
+.scene.container .content-card {
+  background:#fff!important;
+  border:1.5px solid rgba(70,190,170,.22)!important;
+  border-radius:28px!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.10),0 3px 8px rgba(0,0,0,.06)!important;
+}
+.scene.container .visualization-card {
+  background:linear-gradient(155deg,#fff 55%,#f0faf7 100%)!important;
+  border:2px solid #46beaa!important;
+  border-radius:28px!important;
+  box-shadow:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.05)!important;
+}
+.scene.container .key-concepts {
+  background:rgba(70,190,170,.12)!important;
+  border:1.5px solid #46beaa!important;
+  border-radius:20px!important;
+  box-shadow:0 1px 3px rgba(0,0,0,.06)!important;
+}
+.scene.container .key-concepts .concept-title {color:#1a7768!important}
+.scene.container .animation-container {
+  border:1.5px solid #d5e7e2!important;
+  border-radius:20px!important;
+  background:#fff!important;
+  box-shadow:0 1px 3px rgba(0,0,0,.06)!important;
+}
+.scene.container .disclaimer-card,.scene.container .technical-note,
+.scene.container .info-box {
+  background:#fff!important;
+  border:1.5px solid #d6eee8!important;
+  border-left:4px solid #46beaa!important;
+  border-radius:0 16px 16px 0!important;
+  box-shadow:0 1px 3px rgba(0,0,0,.06)!important;
+}
+.scene.container .technical-note {
+  background:#eaf8f5!important;
+  border-color:#46beaa!important;
+}
+.scene.container .legend-item {color:#444!important}
+.scene.overview-scene .overview-list {
+  background:#fff!important;
+  border:1.5px solid #46beaa!important;
+  border-radius:28px!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.10),0 3px 8px rgba(0,0,0,.06)!important;
+}
+.scene.overview-scene .topic-item {
+  background:#eaf8f5!important;
+  border:1.5px solid #d6eee8!important;
+  border-left:4px solid #46beaa!important;
+  border-radius:12px!important;
+}
+.scene.containment-container .container-layer {
+  border:2px solid rgba(70,190,170,.65)!important;
+  border-radius:20px!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.10),0 3px 8px rgba(0,0,0,.06)!important;
+}
+.scene.containment-container .llm-container {border-color:#339988!important}
+/* Module-specific layout: square showcase surfaces, aligned editorial copy. */
+.scene.container .card {
+  border-radius:0!important;
+  padding:clamp(28px,2.4vw,44px)!important;
+}
+.scene.container .content-card {
+  justify-content:flex-start!important;
+  align-items:stretch!important;
+  gap:0!important;
+}
+.scene.container .content-card .title {
+  font-family:Inter,Arial,Helvetica,sans-serif!important;
+  font-size:clamp(2rem,2vw,2.45rem)!important;
+  line-height:1.2!important;
+  font-weight:700!important;
+  letter-spacing:-.025em!important;
+  white-space:nowrap!important;
+  min-height:1.2em!important;
+  margin:0!important;
+  flex-shrink:0!important;
+}
+.scene.container .content-card .subtitle {
+  font-size:1.35rem!important;
+  line-height:1.4!important;
+  margin:0!important;
+}
+.scene.container .content-card .title {
+  margin-bottom:24px!important;
+}
+.scene.slide-02 .heading-row {
+  display:flex;
+  align-items:baseline;
+  flex-wrap:nowrap;
+  gap:18px;
+  margin:0 0 24px;
+  flex-shrink:0;
+}
+.scene.slide-02 .heading-row .title {margin:0!important}
+.scene.slide-02 .heading-row .subtitle {
+  font-weight:500!important;
+  white-space:nowrap!important;
+}
+.scene.container .content-card .definition,
+.scene.container .content-card .content-text {
+  font-size:1.4rem!important;
+  line-height:1.7!important;
+  margin:0 0 16px!important;
+  color:#444!important;
+}
+.scene.container .content-card .key-concepts {
+  margin-top:16px!important;
+  border-radius:0!important;
+}
+.scene.container .content-card .concept-title {font-size:1.4rem!important}
+.scene.container .content-card .concept-list li {
+  font-size:1.3rem!important;
+  line-height:1.5!important;
+}
+.scene.container .visualization-card {border-radius:0!important}
+.scene.container .animation-container {border-radius:0!important}
+.scene.container .disclaimer-card,.scene.container .technical-note,
+.scene.container .info-box {border-radius:0!important}
+.scene.overview-scene .overview-list,
+.scene.overview-scene .topic-item {border-radius:0!important}
+.scene.containment-container .container-layer {border-radius:0!important}
+.scene.container .hierarchy-layer,
+.scene.container .processing-step,
+.scene.container .llm-step,
+.scene.container .data-source,
+.scene.container .word-embedding,
+.scene.container .relationship,
+.scene.container .info-box {border-radius:0!important}
+/* Slide 01: editorial numbered agenda, not a checklist or stack of cards. */
+.scene.overview-scene .overview-list {
+  display:grid!important;
+  grid-template-columns: minmax(260px, .85fr) minmax(0, 1.15fr)!important;
+  column-gap:clamp(48px,5vw,100px)!important;
+  align-content:center!important;
+  width:min(1510px,90vw)!important;
+  max-width:none!important;
+  min-height:min(720px,82vh)!important;
+  padding:clamp(45px,5vw,95px)!important;
+  border:0!important;
+  border-top:5px solid #46beaa!important;
+  background:#fff!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.10),0 3px 8px rgba(0,0,0,.06)!important;
+}
+.scene.overview-scene .overview-title {
+  grid-column:1!important;
+  grid-row:1 / 6!important;
+  align-self:start!important;
+  margin:0!important;
+  color:#111!important;
+  font-size:clamp(3.2rem,4vw,4.8rem)!important;
+  line-height:1.12!important;
+  letter-spacing:-.04em!important;
+  font-weight:800!important;
+  max-width:390px!important;
+  text-align:left!important;
+}
+.scene.overview-scene .topic-item {
+  grid-column:2!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:22px!important;
+  min-height:105px!important;
+  padding:18px 0!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-bottom:1.5px solid #e0e0e0!important;
+  border-radius:0!important;
+  text-align:left!important;
+}
+.scene.overview-scene .topic-item:last-child {border-bottom:0!important}
+.scene.overview-scene .checkbox {display:none!important}
+.scene.overview-scene .topic-item::before {
+  display:block;
+  width:65px;
+  flex:none;
+  font-size:1.1rem;
+  letter-spacing:.08em;
+  font-weight:800;
+  color:#339988;
+}
+.scene.overview-scene .topic-item:nth-child(2)::before {content:'01'}
+.scene.overview-scene .topic-item:nth-child(3)::before {content:'02'}
+.scene.overview-scene .topic-item:nth-child(4)::before {content:'03'}
+.scene.overview-scene .topic-item:nth-child(5)::before {content:'04'}
+.scene.overview-scene .topic-item:nth-child(6)::before {content:'05'}
+.scene.overview-scene .topic-text {
+  color:#111!important;
+  font-size:clamp(1.4rem,1.6vw,1.85rem)!important;
+  line-height:1.35!important;
+  font-weight:600!important;
+}
+/* Slide 02 contains five concepts: give the list enough room to stay inside
+   its panel without shrinking or changing the wording of the final item. */
+.scene.slide-02 .content-card {
+  padding-top:28px!important;
+  padding-bottom:28px!important;
+}
+.scene.slide-02 .content-card .title {min-height:1.2em!important}
+.scene.slide-02 .content-card .subtitle {margin-bottom:0!important}
+.scene.slide-02 .content-card .definition {
+  line-height:1.55!important;
+  margin-bottom:8px!important;
+}
+.scene.slide-02 .content-card .key-concepts {
+  margin-top:8px!important;
+  padding:16px 20px!important;
+}
+.scene.slide-02 .content-card .concept-title {margin-bottom:6px!important}
+.scene.slide-02 .content-card .concept-list li {
+  line-height:1.4!important;
+  padding-top:.13em!important;
+  padding-bottom:.13em!important;
+}
+/* Slide 04's Important Note is supporting copy, not a second callout card. */
+.scene.slide-04 .visualization-card {
+  justify-content:center!important;
+  gap:7px!important;
+  padding:20px 26px!important;
+}
+.scene.slide-04 .visualization-card .animation-container {
+  height:380px!important;
+  max-height:43vh!important;
+}
+.scene.slide-04 .visualization-card .legend {gap:8px!important}
+.scene.slide-04 .visualization-card .phase-label {margin:0!important}
+.scene.slide-04 .visualization-card .technical-note {
+  flex:none!important;
+  margin:0!important;
+  padding:8px 12px!important;
+}
+.scene.slide-04 .technical-title {margin-bottom:4px!important}
+.scene.slide-04 .technical-list li {
+  font-size:.94rem!important;
+  line-height:1.3!important;
+  margin-bottom:2px!important;
+}
+.scene.slide-04 .visualization-card .disclaimer-card {
+  width:100%!important;
+  max-width:520px!important;
+  padding:2px 0 2px 24px!important;
+  margin:6px 0 0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  flex:none!important;
+  align-self:stretch!important;
+}
+.scene.slide-04 .disclaimer-title,
+.scene.slide-04 .visualization-card .disclaimer-text {
+  display:inline!important;
+  font-size:.85rem!important;
+  line-height:1.35!important;
+  color:#666!important;
+}
+.scene.slide-04 .disclaimer-title {
+  font-weight:700!important;
+  margin:0 .35em 0 0!important;
+}
+/* Slide 07: three original ideas, expressed as one visual argument per phase. */
+.scene.slide-07 {
+  grid-template-columns:minmax(0,1.16fr) minmax(0,.84fr)!important;
+}
+.scene.slide-07 .content-card {
+  justify-content:flex-start!important;
+  padding:clamp(24px,2vw,38px)!important;
+  position:relative!important;
+}
+.scene.slide-07 .content-card .title {
+  min-height:1.2em!important;
+  margin:0 0 22px!important;
+}
+.scene.slide-07 .content-card .attention-point {
+  position:absolute!important;
+  top:46%;
+  left:clamp(24px,2vw,38px);
+  right:clamp(24px,2vw,38px);
+  margin:0!important;
+  opacity:0;
+  transform:translateY(-50%);
+  animation:none!important;
+}
+.scene.slide-07 .attention-point__claim {
+  display:block;
+  max-width:720px;
+  font-size:clamp(2.7rem,3.3vw,3.8rem);
+  line-height:1.16;
+  font-weight:750;
+  letter-spacing:-.035em;
+  color:#111;
+}
+.scene.slide-07 .attention-point__claim em {
+  color:#339988;
+  font-style:normal;
+}
+.scene.slide-07 .attention-point__detail {
+  display:block;
+  margin-top:28px;
+  padding-left:20px;
+  border-left:3px solid #46beaa;
+  color:#444;
+  font-size:1.5rem;
+  line-height:1.65;
+  max-width:720px;
+}
+.scene.slide-07 .attention-track {
+  position:absolute;
+  left:clamp(28px,2.4vw,44px);
+  right:clamp(28px,2.4vw,44px);
+  bottom:clamp(36px,5vh,64px);
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.scene.slide-07 .attention-track__step {
+  min-width:0;
+  padding-top:14px;
+  border-top:3px solid #e0e0e0;
+  font-size:1.13rem;
+  line-height:1.35;
+  font-weight:700;
+  color:#666;
+}
+.scene.slide-07 .attention-track__step::before {
+  display:block;
+  margin-bottom:10px;
+  font-size:.95rem;
+  letter-spacing:.1em;
+  color:#339988;
+}
+.scene.slide-07 .attention-track__step:nth-child(1)::before {content:'01'}
+.scene.slide-07 .attention-track__step:nth-child(2)::before {content:'02'}
+.scene.slide-07 .attention-track__step:nth-child(3)::before {content:'03'}
+.scene.slide-07 .attention-track__step:nth-child(1) {animation:attentionTrackOne 48s linear both}
+.scene.slide-07 .attention-track__step:nth-child(2) {animation:attentionTrackTwo 48s linear both}
+.scene.slide-07 .attention-track__step:nth-child(3) {animation:attentionTrackThree 48s linear both}
+@keyframes attentionTrackOne {0%,31%{border-top-color:#46beaa;color:#111}32%,100%{border-top-color:#e0e0e0;color:#666}}
+@keyframes attentionTrackTwo {0%,31%{border-top-color:#e0e0e0;color:#666}32%,62%{border-top-color:#46beaa;color:#111}63%,100%{border-top-color:#e0e0e0;color:#666}}
+@keyframes attentionTrackThree {0%,62%{border-top-color:#e0e0e0;color:#666}63%,100%{border-top-color:#46beaa;color:#111}}
+.scene.slide-07 .attention-point:nth-of-type(1) {animation:paragraphPhase 15s linear 0s both!important}
+.scene.slide-07 .attention-point:nth-of-type(2) {animation:paragraphPhase 15s linear 15s both!important}
+.scene.slide-07 .attention-point:nth-of-type(3) {animation:paragraphFinal .6s ease 30s both!important}
+@keyframes paragraphPhase {0%{opacity:0}5%,92%{opacity:1}100%{opacity:0}}
+@keyframes paragraphFinal {from{opacity:0}to{opacity:1}}
+/* Keep the complete self-attention drawing within the right-hand surface. */
+.scene.slide-07 .visualization-card {
+  padding:22px!important;
+  justify-content:center!important;
+}
+.scene.slide-07 .animation-container {
+  width:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  height:auto!important;
+  min-height:0!important;
+  padding:22px 18px!important;
+  overflow:hidden!important;
+  flex:none!important;
+}
+.scene.slide-07 .animation-content {gap:12px!important;position:relative!important}
+.scene.slide-07 .title-section {margin:0!important}
+.scene.slide-07 .animation-title {font-size:1.4rem!important}
+.scene.slide-07 .animation-subtitle,
+.scene.slide-07 .parallel-indicator,
+.scene.slide-07 .output-label {font-size:1rem!important}
+.scene.slide-07 .tokens-row {margin-bottom:115px!important}
+.scene.slide-07 .tokens-row,.scene.slide-07 .output-tokens-row {
+  flex-wrap:nowrap!important;
+  gap:5px!important;
+  width:100%!important;
+}
+.scene.slide-07 .token {
+  flex:1 1 0!important;
+  min-width:0!important;
+  font-size:1rem!important;
+  padding:8px 3px!important;
+}
+.scene.slide-07 .attention-canvas {
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  z-index:0!important;
+}
+.scene.slide-07 .animation-content > :not(.attention-canvas) {
+  position:relative!important;
+  z-index:1!important;
+}
+.scene.slide-07 .info-box {
+  width:100%!important;
+  max-width:none!important;
+  padding:10px!important;
+  font-size:.95rem!important;
+  line-height:1.4!important;
+}
+.scene.slide-07 .animation-content .tokens-row {margin-bottom:145px!important}
+.scene.slide-07 .animation-content .output-section {align-self:stretch!important}
+.scene.slide-07 .animation-caption {
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  align-items:flex-start;
+  text-align:left;
+  padding:4px 0;
+}
+.scene.slide-07 .animation-caption .parallel-indicator,
+.scene.slide-07 .animation-caption .output-label {
+  display:block!important;
+  font-size:.95rem!important;
+  line-height:1.4!important;
+  font-weight:500!important;
+  color:#666!important;
+  margin:0!important;
+  padding-left:20px!important;
+  position:relative!important;
+  opacity:0;
+  transform:none!important;
+}
+.scene.slide-07 .animation-caption .parallel-indicator {
+  animation:captionFade .6s ease 3.4s forwards!important;
+}
+.scene.slide-07 .animation-caption .output-label {
+  animation:captionFade .6s ease 5s forwards!important;
+}
+.scene.slide-07 .animation-caption .parallel-indicator::before,
+.scene.slide-07 .animation-caption .output-label::before {
+  content:'*';
+  position:absolute;
+  left:0;
+  top:0;
+  font-size:1.1rem;
+  font-weight:800;
+  color:#339988;
+}
+@keyframes captionFade {from{opacity:0}to{opacity:1}}
+.scene.slide-07 .result-card {
+  width:100%!important;
+  background:#fff!important;
+  border:1.5px solid #46beaa!important;
+  border-radius:0!important;
+  box-shadow:0 1px 3px rgba(0,0,0,.06)!important;
+  padding:20px 24px!important;
+  font-size:1.2rem!important;
+  line-height:1.55!important;
+  color:#444!important;
+  text-align:left!important;
+}
+/* Slide 08: step every nested panel down enough for its parent label to
+   remain exposed. These are sibling elements on a shared absolute stage. */
+.scene.containment-container .container-layer {
+  box-sizing:border-box!important;
+  transform:scale(.8)!important;
+  transform-origin:top left!important;
+}
+.scene.containment-container .container-layer.visible {
+  transform:scale(1)!important;
+}
+.scene.containment-container .ml-container {
+  left:5%!important;top:3%!important;width:90%!important;height:94%!important;
+}
+.scene.containment-container .nn-container {
+  left:11%!important;top:19%!important;width:78%!important;height:76%!important;
+}
+.scene.containment-container .dl-container {
+  left:18%!important;top:35%!important;width:65%!important;height:58%!important;
+}
+.scene.containment-container .nlp-container {
+  left:25%!important;top:51%!important;width:53%!important;height:42%!important;
+}
+.scene.containment-container .llm-container {
+  left:50%!important;top:68%!important;width:26%!important;height:22%!important;
+}
+.scene.containment-container .layer-label {
+  left:22px!important;top:14px!important;max-width:75%!important;
+}
+.scene.containment-container .layer-title {
+  font-size:1.6rem!important;line-height:1.15!important;margin-bottom:4px!important;
+}
+.scene.containment-container .layer-description {
+  font-size:1.1rem!important;line-height:1.25!important;
+}
+.scene.containment-container .llm-content {max-width:100%!important}
+.scene.containment-container .llm-content .layer-title {font-size:1.5rem!important}
+.scene.containment-container .llm-content .layer-description {font-size:1rem!important}
+/* Slide 08: stepped outline diagram. Transparent interiors leave each prior
+   label visible in the band above the next layer; the newest outline is mint. */
+.scene.containment-container .ml-container,
+.scene.containment-container .nn-container,
+.scene.containment-container .dl-container,
+.scene.containment-container .nlp-container,
+.scene.containment-container .llm-container {
+  background:transparent!important;
+  border:2.5px solid #c7cbc9!important;
+  box-shadow:none!important;
+}
+.scene.containment-container .llm-container {
+  background:#fff!important;
+  border-width:3px!important;
+}
+.scene.containment-container .container-layer.visible {
+  border-color:#46beaa!important;
+}
+.scene.containment-container .container-layer.visible:has(~ .container-layer.visible) {
+  border-color:#c7cbc9!important;
+}
+.scene.containment-container .layer-title,
+.scene.containment-container .llm-content .layer-title {color:#111!important}
+.scene.containment-container .layer-description,
+.scene.containment-container .llm-content .layer-description {color:#555!important}
+.scene.containment-container::before {background:none!important}
+/* Supporting notes throughout the technical slides are legend footnotes.
+   Keep their existing .ready/entrance transitions and every word of copy. */
+.scene.container .visualization-card .disclaimer-card {
+  position:relative!important;
+  width:100%!important;
+  max-width:none!important;
+  flex:none!important;
+  align-self:stretch!important;
+  padding:2px 0 2px 24px!important;
+  margin:6px 0 0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.scene.container .visualization-card .disclaimer-card::before {
+  content:'*';
+  position:absolute;
+  top:0;
+  left:0;
+  font-size:1.15rem;
+  line-height:1.4;
+  font-weight:800;
+  color:#339988;
+}
+.scene.container .visualization-card .disclaimer-title,
+.scene.container .visualization-card .disclaimer-text {
+  display:inline!important;
+  font-size:1rem!important;
+  line-height:1.45!important;
+  color:#555!important;
+}
+.scene.container .visualization-card .disclaimer-title {
+  font-weight:700!important;
+  margin:0 .35em 0 0!important;
+}
+.scene.container .visualization-card .technical-note {
+  padding:4px 0!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.scene.container .visualization-card .technical-title {
+  font-size:1rem!important;
+  line-height:1.4!important;
+  margin:0 0 2px!important;
+}
+.scene.container .visualization-card .technical-list li {
+  font-size:.94rem!important;
+  line-height:1.3!important;
+  margin:0 0 2px!important;
+}
+.scene.slide-07 .info-box {
+  padding:4px 0 4px 20px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  text-align:left!important;
+  font-size:1rem!important;
+}
+.scene.slide-07 .info-box::before {
+  content:'*';
+  float:left;
+  margin-left:-20px;
+  color:#339988;
+  font-weight:800;
+}
+.scene.slide-07 .visualization-card .result-card {
+  width:100%!important;
+  background:#fff!important;
+  border:1.5px solid #46beaa!important;
+  border-radius:0!important;
+  box-shadow:0 1px 3px rgba(0,0,0,.06)!important;
+  padding:20px 24px!important;
+  color:#444!important;
+  text-align:left!important;
+  font-size:1.2rem!important;
+  line-height:1.55!important;
+}
+.scene.slide-07 .visualization-card .result-card::before {content:none!important}
+/* Slide 06 has five animated phases sharing one viewport. Keep the original
+   phase changes but give the data pipeline a stage tall enough for all rows. */
+.scene.slide-06 .visualization-card {
+  min-height:0!important;
+  justify-content:center!important;
+  align-items:stretch!important;
+  gap:12px!important;
+  padding:0 18px!important;
+}
+.scene.slide-06 .animation-container {
+  position:relative!important;
+  flex:none!important;
+  width:100%!important;
+  height:60vh!important;
+  max-height:60vh!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+.scene.slide-06 .llm-visualization {
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  transform:none!important;
+}
+.scene.slide-06 .llm-step {
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+}
+.scene.slide-06 .step-label {
+  flex:none!important;
+  font-size:1.4rem!important;
+  line-height:1.25!important;
+  margin:0 0 14px!important;
+}
+.scene.slide-06 .step-content {
+  width:min(100%,540px)!important;
+  max-width:100%!important;
+  min-height:0!important;
+  max-height:calc(100% - 70px)!important;
+  padding:16px 20px!important;
+  overflow:hidden!important;
+  border-radius:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.scene.slide-06 .data-pipeline {gap:7px!important}
+.scene.slide-06 .data-source {
+  width:100%!important;
+  max-width:none!important;
+  min-height:38px!important;
+  padding:5px 12px!important;
+}
+.scene.slide-06 .data-icon {
+  width:32px!important;height:32px!important;
+  flex:none!important;
+  background:transparent!important;
+  color:#339988!important;
+}
+.scene.slide-06 .data-icon svg {width:28px;height:28px}
+.scene.slide-06 .data-text,.scene.slide-06 .data-volume,
+.scene.slide-06 .spec-item,.scene.slide-06 .stat-item,
+.scene.slide-06 .weight-item,.scene.slide-06 .inference-item {
+  font-size:1rem!important;
+}
+.scene.slide-06 .processing-arrow {margin:0!important}
+.scene.container.slide-06 .visualization-card .disclaimer-card {
+  box-sizing:border-box!important;
+  width:min(100%,540px)!important;
+  max-width:540px!important;
+  align-self:center!important;
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:2px 0 2px 24px!important;
+}
+.scene.slide-06 .visualization-card .disclaimer-text {
+  display:block!important;
+  font-size:1rem!important;
+  line-height:1.45!important;
+}
+/* Enlarge the artwork itself, keeping all five source phase reveals intact. */
+.scene.slide-06 .step-label {
+  font-size:1.75rem!important;
+  margin-bottom:20px!important;
+}
+.scene.slide-06 .step-content {
+  width:min(100%,620px)!important;
+  padding:20px 24px!important;
+}
+.scene.slide-06 .data-pipeline {gap:9px!important}
+.scene.slide-06 .data-source {
+  min-height:46px!important;
+  padding:7px 14px!important;
+  gap:14px!important;
+}
+.scene.slide-06 .data-icon {width:40px!important;height:40px!important}
+.scene.slide-06 .data-icon svg {width:34px!important;height:34px!important}
+.scene.slide-06 .data-text,.scene.slide-06 .data-volume,
+.scene.slide-06 .spec-item,.scene.slide-06 .stat-item,
+.scene.slide-06 .weight-item,.scene.slide-06 .inference-item {
+  font-size:1.2rem!important;
+  line-height:1.4!important;
+}
+.scene.slide-06 .spec-item,.scene.slide-06 .stat-item,
+.scene.slide-06 .weight-item,.scene.slide-06 .inference-item {
+  padding:8px 14px!important;
+}
+.scene.slide-06 .neuron {width:18px!important;height:18px!important}
+.scene.slide-06 .network-layer {gap:10px!important}
+.scene.slide-06 .gpu-unit {width:28px!important;height:21px!important}
+.scene.slide-06 .weight-cell {width:17px!important;height:17px!important}
+.scene.slide-06 .token {
+  font-size:1.2rem!important;
+  padding:10px 16px!important;
+}
+.scene.slide-06 .flow-arrow,.scene.slide-06 .processing-arrow {
+  font-size:1.5rem!important;
+}
+.scene.slide-06 .prob-bar {width:12px!important}
+.scene.container.slide-06 .visualization-card .disclaimer-card {
+  width:min(100%,620px)!important;
+  max-width:620px!important;
+}
+/* Training-data phase has four sources plus two totals. Keep the last total
+   inside the stage instead of letting the inner max-height clip it. */
+.scene.slide-06 .animation-container {
+  height:67vh!important;
+  max-height:67vh!important;
+}
+.scene.slide-06 .data-step .step-content {
+  max-height:none!important;
+  overflow:visible!important;
+  padding:12px 24px!important;
+}
+.scene.slide-06 .data-step .data-pipeline {gap:5px!important}
+.scene.slide-06 .data-step .data-source {
+  min-height:42px!important;
+  padding:3px 12px!important;
+}
+.scene.slide-06 .data-step .spec-item {padding:5px 12px!important}
+.scene.slide-06 .data-step .processing-arrow {
+  font-size:1.2rem!important;
+  line-height:1!important;
+  margin:0!important;
+}
+/* Slide 05: the processing stages remain, without tinted cards behind them. */
+.scene.slide-05 .processing-step .step-content {
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+}
+.scene.slide-05 .word-embedding,
+.scene.slide-05 .relationship,
+.scene.slide-05 .embedding-space {
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+}
+/* Expand slide 05's five-step visualization into the available right column.
+   Phase labels fade independently; the existing step/token motions stay intact. */
+.scene.slide-05 .visualization-card {
+  align-items:stretch!important;
+  justify-content:center!important;
+  gap:12px!important;
+  padding:0 12px!important;
+}
+.scene.slide-05 .animation-container {
+  width:100%!important;
+  height:62vh!important;
+  max-height:62vh!important;
+  flex:none!important;
+  margin:0!important;
+  position:relative!important;
+  overflow:hidden!important;
+}
+.scene.slide-05 .processing-visualization {
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  transform:none!important;
+}
+.scene.slide-05 .processing-step {
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+  justify-content:flex-start!important;
+  padding-top:28px!important;
+}
+.scene.slide-05 .processing-step .step-label {
+  font-size:1.7rem!important;
+  line-height:1.2!important;
+  height:2.4em!important;
+  flex:0 0 2.4em!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  margin:0!important;
+  opacity:0;
+}
+.scene.slide-05 .processing-step.visible .step-label {
+  animation:slide05TitleFade .6s ease .15s forwards;
+}
+.scene.slide-05 .processing-step:not(.visible) .step-label {
+  animation:slide05TitleFadeOut .6s ease forwards;
+}
+.scene.slide-05 .processing-step .step-content {
+  width:min(100%,600px)!important;
+  max-width:none!important;
+  min-height:0!important;
+  padding:24px!important;
+  margin:auto 0!important;
+}
+.scene.slide-05 .text-input {font-size:2.3rem!important}
+.scene.slide-05 .token {font-size:1.25rem!important}
+.scene.slide-05 .embedding-concept,
+.scene.slide-05 .embedding-word,
+.scene.slide-05 .embedding-vector,
+.scene.slide-05 .relationship {font-size:1.1rem!important}
+.scene.slide-05 .embedding-space {height:220px!important}
+.scene.slide-05 .visualization-card .disclaimer-card {
+  max-width:600px!important;
+  align-self:center!important;
+}
+/* Scale the actual phase artwork, not just its viewport. None of these
+   selectors touches opacity or transform, which the source uses for reveals. */
+.scene.slide-05 .processing-step .step-content {
+  width:min(100%,660px)!important;
+  padding:20px 12px!important;
+}
+/* The short input/tokenization phases should occupy the vertical middle of
+   the stage, independently of the phase heading anchored at its top. */
+.scene.slide-05 .input-step .step-content,
+.scene.slide-05 .tokenization-step .step-content {
+  position:absolute!important;
+  top:50%!important;
+  left:50%!important;
+  transform:translate(-50%,-50%)!important;
+  margin:0!important;
+}
+.scene.slide-05 .text-input {font-size:2.65rem!important;line-height:1.3!important}
+.scene.slide-05 .tokens-container {gap:10px!important}
+.scene.slide-05 .token {
+  font-size:1.4rem!important;
+  padding:16px 20px!important;
+}
+.scene.slide-05 .embeddings-container,
+.scene.slide-05 .context-analysis {gap:22px!important}
+.scene.slide-05 .embedding-concept {font-size:1.3rem!important}
+.scene.slide-05 .word-embedding {
+  max-width:100%!important;
+  gap:16px!important;
+  padding:10px 2px!important;
+}
+.scene.slide-05 .embedding-word,
+.scene.slide-05 .embedding-arrow {font-size:1.4rem!important}
+.scene.slide-05 .embedding-vector {
+  font-size:1.13rem!important;
+  padding:12px 10px!important;
+  white-space:nowrap!important;
+}
+.scene.slide-05 .embedding-space {height:300px!important}
+.scene.slide-05 .word-cluster {
+  width:148px!important;height:148px!important;
+  font-size:1.2rem!important;
+  line-height:1.35!important;
+}
+.scene.slide-05 .cluster-animals {left:5%!important;top:8%!important}
+.scene.slide-05 .cluster-actions {right:5%!important;top:8%!important}
+.scene.slide-05 .cluster-objects {bottom:4%!important}
+.scene.slide-05 .original-sentence {font-size:1.65rem!important;margin-bottom:10px!important}
+.scene.slide-05 .relationship {
+  font-size:1.3rem!important;
+  gap:12px!important;
+  padding:10px 2px!important;
+}
+.scene.slide-05 .relationship-word {padding:10px 12px!important}
+.scene.slide-05 .legend-item,.scene.slide-05 .phase-label {font-size:1.05rem!important}
+@keyframes slide05TitleFade {from{opacity:0}to{opacity:1}}
+@keyframes slide05TitleFadeOut {from{opacity:1}to{opacity:0}}
+.scene.slide-05 .content-card .title {
+  animation:slide05HeadingFade .75s ease .15s both!important;
+}
+@keyframes slide05HeadingFade {from{opacity:0}to{opacity:1}}
+/* Let the right-hand visualization sit directly on the slide surface. Keep
+   sizing and animation hooks; remove only the surrounding card chrome. */
+.scene.container .visualization-card {
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.scene.container .animation-container {
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+/* Slide 01 is an open editorial agenda, with no enclosing card. */
+.scene.overview-scene .overview-list {
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:clamp(32px,4vw,72px)!important;
+  opacity:1!important;
+  transform:none!important;
+  animation:none!important;
+}
+.scene.overview-scene .overview-title {
+  opacity:0;
+  animation:fadeInUp .45s ease .05s forwards;
+}
+.scene.overview-scene .topic-item {animation-duration:.8s!important}
+.scene.overview-scene .topic-item:nth-child(2) {animation-delay:1.8s!important}
+.scene.overview-scene .topic-item:nth-child(3) {animation-delay:3.6s!important}
+.scene.overview-scene .topic-item:nth-child(4) {animation-delay:5.4s!important}
+.scene.overview-scene .topic-item:nth-child(5) {animation-delay:7.2s!important}
+.scene.overview-scene .topic-item:nth-child(6) {animation-delay:9s!important}
+/* More top/bottom margin around the panels, less vertical padding inside
+   the left panels. Retain the established horizontal spacing. */
+.scene.container {padding:4vh 2.6vw!important;gap:1.8vw!important}
+.scene.container .content-card {
+  padding:20px clamp(28px,2.4vw,44px)!important;
+}
+.scene.slide-02 .content-card {
+  padding:16px clamp(28px,2.4vw,44px)!important;
+}
+.scene.slide-07 .content-card {
+  padding:18px clamp(28px,2.4vw,44px)!important;
+}
+/* Equal-height left panels. Keep headings and definitions together; use the
+   remaining height within the concept panel instead of creating gaps between
+   unrelated blocks. */
+.scene.container .content-card {
+  height:100%!important;
+  align-self:stretch!important;
+  justify-content:flex-start!important;
+}
+.scene.container .content-card .key-concepts {
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  margin-top:12px!important;
+}
+.scene.container .content-card .concept-list {
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-evenly!important;
+}
+.scene.container .content-card .definition {
+  flex:0 0 auto!important;
+}
+/* Slide 07 is prose-only: each original paragraph occupies the same center
+   position in turn; the heading remains anchored above it. */
+.scene.slide-07 .content-card {justify-content:flex-start!important}
+.scene.slide-07 .content-card .attention-point {
+  left:clamp(28px,2.4vw,44px)!important;
+  right:clamp(28px,2.4vw,44px)!important;
+}
+/* Slide 07: use the left half as open editorial text; place the phase track
+   directly beneath the larger centered token animation on the right. */
+.scene.slide-07 {grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.scene.slide-07 .content-card {
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:36px 32px!important;
+}
+.scene.slide-07 .content-card .title {
+  font-size:clamp(2.2rem,2.45vw,2.9rem)!important;
+  margin-bottom:0!important;
+}
+.scene.slide-07 .attention-point {top:51%!important}
+.scene.slide-07 .attention-point__claim {
+  font-size:clamp(3rem,3.6vw,4.1rem)!important;
+  max-width:none!important;
+}
+.scene.slide-07 .attention-point__detail {
+  font-size:1.65rem!important;
+  line-height:1.6!important;
+  max-width:none!important;
+  margin-top:34px!important;
+}
+.scene.slide-07 .visualization-card {
+  justify-content:center!important;
+  align-items:stretch!important;
+  gap:18px!important;
+  padding:20px 28px!important;
+}
+.scene.slide-07 .animation-container {
+  width:100%!important;
+  padding:20px 10px!important;
+}
+.scene.slide-07 .animation-content {gap:18px!important}
+.scene.slide-07 .animation-title {font-size:1.8rem!important}
+.scene.slide-07 .animation-subtitle {font-size:1.2rem!important}
+.scene.slide-07 .animation-content .tokens-row {margin-bottom:165px!important}
+.scene.slide-07 .token {font-size:1.2rem!important;padding:12px 4px!important}
+.scene.slide-07 .attention-track {
+  position:static!important;
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:18px!important;
+  margin:0!important;
+  padding:0!important;
+}
+.scene.slide-07 .attention-track__step {
+  font-size:1.3rem!important;
+  padding:16px 2px 8px!important;
+}
+.scene.slide-07 .animation-caption {padding:0!important}
+.scene.slide-07 .visualization-card .result-card {
+  padding:16px 20px!important;
+  font-size:1.15rem!important;
+}
+/* With explanatory captions removed, the attention graphic occupies the
+   right-hand field; the timeline remains beneath it. */
+.scene.slide-07 .visualization-card {gap:24px!important;padding:22px 18px!important}
+.scene.slide-07 .animation-container {
+  flex:0 0 auto!important;
+  width:100%!important;
+  padding:28px 12px!important;
+}
+.scene.slide-07 .animation-content {gap:28px!important}
+.scene.slide-07 .animation-title {font-size:2.1rem!important}
+.scene.slide-07 .animation-subtitle {font-size:1.3rem!important}
+.scene.slide-07 .animation-content .tokens-row {margin:28px 0 250px!important}
+.scene.slide-07 .tokens-row,.scene.slide-07 .output-tokens-row {gap:10px!important}
+.scene.slide-07 .token {
+  font-size:1.45rem!important;
+  padding:18px 6px!important;
+  min-height:70px!important;
+}
+.scene.slide-07 .attention-track {margin-top:24px!important}
+/* Keep the heading in-frame at the player's 110% iframe zoom. Reduce the
+   empty connector lane rather than shrinking the title or token labels. */
+.scene.slide-07 .visualization-card {
+  justify-content:flex-start!important;
+  padding-top:48px!important;
+  overflow:visible!important;
+}
+.scene.slide-07 .animation-container {padding:16px 12px!important}
+.scene.slide-07 .animation-content {gap:18px!important}
+.scene.slide-07 .title-section {flex:none!important;margin-bottom:2px!important}
+.scene.slide-07 .animation-content .tokens-row {
+  margin:14px 0 165px!important;
+}
+.scene.slide-07 .attention-track {margin-top:12px!important}
+
+/* Slide 06 follows the open editorial split and visualization styling of 02–05. */
+@keyframes llmCharacteristicOne {
+  0%,4% {opacity:0;transform:translateY(12px)}
+  8%,29% {opacity:1;transform:translateY(0)}
+  33%,100% {opacity:0;transform:translateY(-8px)}
+}
+@keyframes llmCharacteristicTwo {
+  0%,33% {opacity:0;transform:translateY(12px)}
+  37%,60% {opacity:1;transform:translateY(0)}
+  64%,100% {opacity:0;transform:translateY(-8px)}
+}
+@keyframes llmCharacteristicThree {
+  0%,64% {opacity:0;transform:translateY(12px)}
+  68%,96% {opacity:1;transform:translateY(0)}
+  100% {opacity:0;transform:translateY(-8px)}
+}
+.scene.slide-06::before {
+  content:""!important;
+  position:absolute!important;
+  inset:0 50% 0 0!important;
+  background:#fff!important;
+  z-index:0!important;
+}
+.scene.slide-06 > * {position:relative!important;z-index:1!important}
+.scene.slide-06 .content-card {
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  padding:16px clamp(28px,2.4vw,44px)!important;
+  justify-content:flex-start!important;
+}
+.scene.slide-06 .content-card .title {
+  font-family:Inter,Arial,Helvetica,sans-serif!important;
+  font-size:clamp(2rem,2vw,2.45rem)!important;
+  line-height:1.2!important;
+  font-weight:700!important;
+  letter-spacing:-.025em!important;
+  margin:0 0 24px!important;
+  white-space:normal!important;
+  animation-iteration-count:1!important;
+  animation-fill-mode:forwards!important;
+}
+.scene.slide-06 .content-card .definition {
+  font-size:1.6rem!important;
+  line-height:1.4!important;
+  margin:0 0 16px!important;
+  animation-iteration-count:1!important;
+  animation-fill-mode:forwards!important;
+}
+.scene.slide-06 .content-card .key-concepts {
+  position:relative!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  padding:0 0 96px!important;
+  margin-top:28px!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  animation-iteration-count:1!important;
+  animation-fill-mode:forwards!important;
+}
+.scene.container.slide-06 .content-card .key-concepts {flex:1 1 auto!important;align-self:stretch!important}
+.scene.slide-06 .content-card .concept-title {
+  color:#111!important;
+  font-family:Inter,Arial,Helvetica,sans-serif!important;
+  font-size:1.5rem!important;
+  font-weight:600!important;
+  line-height:1.3!important;
+  margin:0 0 18px!important;
+  opacity:1!important;
+  transform:none!important;
+  animation:none!important;
+}
+.scene.slide-06 .content-card .concept-list {
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  gap:22px!important;
+  flex:0 0 auto!important;
+}
+.scene.container.slide-06 .content-card .concept-list {flex:0 0 auto!important;justify-content:flex-start!important;gap:22px!important}
+.scene.slide-06 .content-card .concept-list li {
+  font-size:1.6rem!important;
+  line-height:1.4!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  animation-iteration-count:1!important;
+  animation-fill-mode:forwards!important;
+}
+.scene.slide-06 .content-card .concept-list li::before {
+  content:""!important;
+  position:absolute!important;
+  left:8px!important;
+  top:.58em!important;
+  width:10px!important;
+  height:10px!important;
+  background:#46beaa!important;
+  border-radius:2px!important;
+}
+.scene.slide-06 .content-card .key-concepts,
+.scene.slide-06 .content-card .llm-characteristic-tabs {
+  width:100%!important;
+}
+.scene.slide-06 .content-card .llm-characteristic-tabs {
+  position:relative!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  width:100%!important;
+}
+.scene.slide-06 .llm-characteristics-timeline {
+  display:none!important;
+}
+.scene.slide-06 .llm-characteristics-tab {
+  min-width:0!important;
+  padding:16px 2px 8px!important;
+  border-top:3px solid #e0e0e0;
+  font-size:1.13rem!important;
+  line-height:1.35!important;
+  font-weight:700;
+  color:#666;
+}
+.scene.slide-06 .llm-characteristics-tab::before {
+  display:block!important;
+  margin-bottom:10px!important;
+  color:#339988!important;
+  font-size:.95rem!important;
+  font-weight:800!important;
+  letter-spacing:.1em!important;
+}
+.scene.slide-06 .llm-characteristics-tab:nth-child(1)::before {content:'01'}
+.scene.slide-06 .llm-characteristics-tab:nth-child(2)::before {content:'02'}
+.scene.slide-06 .llm-characteristics-tab:nth-child(3)::before {content:'03'}
+.scene.slide-06 .llm-characteristics-tab:nth-child(1) {animation:llmTabOne 32s linear both!important}
+.scene.slide-06 .llm-characteristics-tab:nth-child(2) {animation:llmTabTwo 32s linear both!important}
+.scene.slide-06 .llm-characteristics-tab:nth-child(3) {animation:llmTabThree 32s linear both!important}
+@keyframes llmTabOne {0%,9%{border-top-color:#e0e0e0;color:#666;font-weight:500}10%,29%{border-top-color:#46beaa;color:#111;font-weight:800}33%,100%{border-top-color:#e0e0e0;color:#666;font-weight:500}}
+@keyframes llmTabTwo {0%,36%{border-top-color:#e0e0e0;color:#666;font-weight:500}37%,60%{border-top-color:#46beaa;color:#111;font-weight:800}64%,100%{border-top-color:#e0e0e0;color:#666;font-weight:500}}
+@keyframes llmTabThree {0%,67%{border-top-color:#e0e0e0;color:#666;font-weight:500}68%,96%{border-top-color:#46beaa;color:#111;font-weight:800}100%{border-top-color:#e0e0e0;color:#666;font-weight:500}}
+.scene.slide-06 .content-card .llm-characteristic-tab {
+  position:absolute!important;
+  top:50%!important;
+  left:0!important;
+  right:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:20px!important;
+  margin:0!important;
+  opacity:0;
+  transform:translateY(calc(-50% + 12px));
+}
+.scene.slide-06 .content-card .llm-characteristic-tab--1 {animation:llmCharacteristicOne 32s linear both!important}
+.scene.slide-06 .content-card .llm-characteristic-tab--2 {animation:llmCharacteristicTwo 32s linear both!important}
+.scene.slide-06 .content-card .llm-characteristic-tab--3 {animation:llmCharacteristicThree 32s linear both!important}
+@keyframes llmCharacteristicOne {
+  0% {opacity:0;transform:translateY(calc(-50% + 12px))}
+  10%,29% {opacity:1;transform:translateY(-50%)}
+  33%,100% {opacity:0;transform:translateY(calc(-50% - 8px))}
+}
+@keyframes llmCharacteristicTwo {
+  0%,33% {opacity:0;transform:translateY(calc(-50% + 12px))}
+  37%,60% {opacity:1;transform:translateY(-50%)}
+  64%,100% {opacity:0;transform:translateY(calc(-50% - 8px))}
+}
+@keyframes llmCharacteristicThree {
+  0%,64% {opacity:0;transform:translateY(calc(-50% + 12px))}
+  68%,96% {opacity:1;transform:translateY(-50%)}
+  100% {opacity:0;transform:translateY(calc(-50% - 8px))}
+}
+.scene.slide-06 .llm-characteristic-tab__title {
+  display:block!important;
+  color:#111!important;
+  font-size:clamp(2.6rem,3vw,3.6rem)!important;
+  font-weight:750!important;
+  line-height:1.15!important;
+  letter-spacing:-.035em!important;
+}
+.scene.slide-06 .llm-characteristic-tab__detail {
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+  padding-left:20px!important;
+  border-left:3px solid #46beaa!important;
+  color:#444!important;
+  font-size:1.5rem!important;
+  line-height:1.55!important;
+}
+.scene.slide-06 .visualization-card {
+  align-items:stretch!important;
+  justify-content:center!important;
+  gap:clamp(8px,1.2vh,14px)!important;
+  padding:12px clamp(16px,2vw,30px)!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.scene.slide-06 .animation-container {
+  order:0!important;
+  align-self:center!important;
+  position:relative!important;
+  top:0!important;
+  width:100%!important;
+  height:67vh!important;
+  max-height:67vh!important;
+  flex:0 0 auto!important;
+  margin:0 auto!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.scene.slide-06 .llm-visualization {inset:0!important;width:100%!important;height:100%!important;transform:none!important}
+.scene.slide-06 .llm-step {inset:0!important;width:100%!important;height:100%!important;justify-content:center!important}
+.scene.slide-06 .step-label {font-size:1.75rem!important;line-height:1.2!important;margin:0 0 18px!important}
+.scene.slide-06 .step-content {
+  width:min(100%,620px)!important;
+  max-width:100%!important;
+  max-height:calc(100% - 70px)!important;
+  min-height:0!important;
+  padding:18px 20px!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.scene.slide-06 .data-step .step-content {max-height:none!important;overflow:visible!important}
+.scene.slide-06 .data-pipeline {gap:7px!important}
+.scene.slide-06 .data-source {width:100%!important;max-width:none!important;min-height:42px!important;padding:5px 12px!important}
+.scene.slide-06 .data-text,.scene.slide-06 .data-volume,.scene.slide-06 .spec-item,.scene.slide-06 .stat-item,.scene.slide-06 .weight-item,.scene.slide-06 .inference-item {font-size:1.15rem!important;line-height:1.35!important}
+.scene.slide-06 .legend {order:1!important;width:100%!important;display:flex!important;flex-wrap:nowrap!important;justify-content:center!important;gap:10px!important}
+.scene.slide-06 .legend-item {font-size:1.1rem!important;line-height:1.2!important;gap:6px!important;white-space:nowrap!important}
+.scene.slide-06 .legend-color {width:20px!important;height:20px!important;flex:none!important}
+.scene.slide-06 .progress-indicator {order:2!important;height:8px!important;align-self:center!important;margin:0 auto!important}
+.scene.slide-06 .progress-bar {background:linear-gradient(90deg,#8ad9c9,#339988)!important}
+.scene.slide-06 .phase-label {order:3!important;color:#339988!important;font-size:1.3rem!important;line-height:1.2!important;margin:0!important}
+.scene.slide-06 .disclaimer-card {order:4!important;position:relative!important;top:-6vh!important;width:100%!important;max-width:560px!important;padding:8px 0 8px 18px!important;margin:0 auto!important;background:transparent!important;border:0!important;box-shadow:none!important;flex:none!important}
+.scene.container.slide-06 .visualization-card .disclaimer-text {font-size:1rem!important;line-height:1.3!important;color:#c5c5c5!important;font-style:italic!important}
+.scene.container.slide-06 .visualization-card .disclaimer-card::before {color:#c5c5c5!important}
+
+.llm-ref-style-0{height: 20px;}
+.llm-ref-style-1{height: 35px;}
+.llm-ref-style-2{height: 15px;}
+.llm-ref-style-3{height: 40px;}
+.llm-ref-style-4{height: 25px;}
+.llm-ref-style-5{height: 30px;}
+
+:host{display:block;width:100%;height:100%;min-height:0;background:none;color:#f4f9ff;font-family:system-ui,sans-serif}
+[hidden]{display:none!important}
+.llm-reference-content{display:block;width:100%;height:100%;min-height:0;background:none}
+#animationContainer{position:relative!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;padding:8px 12px!important;margin:0!important;background:none!important;border:0!important;box-shadow:none!important;transform:none!important;transition:none!important;overflow:hidden!important}
+#animationContainer::before,#animationContainer::after{content:none!important}
+#llmVisualization{width:100%!important;height:100%!important}
+.llm-step{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;padding:0!important;gap:10px!important;background:none!important}
+.step-label{flex:none!important;width:100%!important;font-size:22px!important;line-height:1.1!important;margin:0!important;color:#83f0f4!important;text-align:center!important}
+#llmVisualization .step-content{flex:none!important;width:100%!important;max-width:none!important;min-width:0!important;min-height:0!important;height:auto!important;padding:0!important;border:0!important;gap:8px!important;box-shadow:none!important}
+.step-content::before,.step-content::after{content:none!important;display:none!important}
+.neural-network{width:100%!important;gap:6px!important;background:none!important}
+.network-layer{padding:4px!important;background:none!important;border-color:#557990!important}
+.neuron{width:16px!important;height:16px!important;background:#83f0f4!important}
+.data-pipeline{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;align-content:center!important;width:100%!important;gap:8px!important;background:none!important}
+.data-pipeline .processing-arrow{grid-column:1/-1!important;margin:0!important;font-size:24px!important;text-align:center!important;color:#83f0f4!important}
+.data-pipeline .spec-item{grid-column:span 2!important;text-align:center!important}
+.data-source{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;position:relative!important;width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;padding:4px 6px!important;gap:4px!important;background:none!important;border-color:#557990!important}
+.data-source .data-text,.data-source .data-volume{position:static!important;flex:none!important;width:100%!important;height:auto!important;text-align:center!important;white-space:normal!important}
+.data-text{font-size:20px!important;line-height:1.2!important;margin:0!important;color:#f4f9ff!important}
+.data-icon{display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 32px!important;width:32px!important;height:32px!important;min-width:32px!important;max-width:32px!important;min-height:32px!important;max-height:32px!important;aspect-ratio:1!important;padding:0!important;margin:0!important;line-height:0!important;background:none!important;color:#83f0f4!important}
+.data-icon svg{display:block!important;flex:none!important;width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;aspect-ratio:1!important}
+.step-content,.neural-network,.network-layer,.data-source,.infrastructure,.gpu-cluster,.weight-visualization,.inference-process,.token-flow,.tech-specs,.infrastructure-stats,.weight-info,.spec-item,.stat-item,.weight-item{background:none!important;box-shadow:none!important}
+.infrastructure{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:center!important;gap:24px!important;width:100%!important}
+.weight-visualization{display:grid!important;grid-template-columns:180px minmax(0,1fr)!important;align-items:center!important;gap:24px!important;width:100%!important;min-width:0!important}
+.weight-matrix{display:grid!important;grid-template-columns:repeat(5,26px)!important;grid-auto-rows:26px!important;gap:6px!important;width:max-content!important;padding:0!important;margin:0!important;justify-self:center!important}
+.weight-info{min-width:0!important;align-items:stretch!important}
+.gpu-unit{width:26px!important;height:26px!important;background:#83f0f466!important;border-color:#83f0f4!important}
+.weight-cell{width:26px!important;height:26px!important}
+.token{font-size:24px!important;padding:6px 12px!important;background:none!important;color:#f4f9ff!important;border-color:#83f0f4!important}
+.flow-arrow{color:#ffd18b!important}
+.tech-specs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;width:100%!important}
+.infrastructure-stats,.weight-info{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:100%!important}
+.spec-item,.stat-item,.weight-item,.data-volume{display:block!important;position:relative!important;width:auto!important;max-width:none!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;padding:4px!important;font-size:20px!important;line-height:1.2!important;color:#ffd18b!important;background:none!important;white-space:normal!important;overflow-wrap:break-word!important}
+.data-volume{padding:0!important;margin:0!important;font-weight:650!important}
+.inference-process{display:grid!important;grid-template-rows:auto auto auto!important;justify-items:center!important;align-content:center!important;width:100%!important;gap:10px!important}
+.inference-stats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important;width:100%!important;gap:10px!important}
+.inference-item{display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;width:100%!important;max-width:none!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;padding:8px 10px!important;font-size:20px!important;line-height:1.25!important;color:#c7d9e8!important;white-space:normal!important;overflow-wrap:break-word!important;text-align:center!important;background:none!important;border:1px solid #557990!important;border-radius:8px!important}

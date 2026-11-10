@@ -1,0 +1,15 @@
+{
+  "merchant_id": "north-star-supply",
+  "merchant_name": "North Star Supply",
+  "currency": "EUR",
+  "allowed_payment_methods": [
+    "visa",
+    "mastercard",
+    "wallet"
+  ],
+  "max_fee_cents": 150,
+  "note": "Fictional onboard shop on the Odyssey shuttle, bound for North Star. Prices remain in EUR; no space-specific charges. Bank transfer is not enabled for this shop. No real payments.",
+  "percentage_fee_caps": {
+    "visa": 150
+  }
+}

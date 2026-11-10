@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 480" role="img" aria-labelledby="harness-title harness-desc" data-native-harness>
+  <title id="harness-title">Agent lifecycle and tool loops inside a harness</title>
+  <desc id="harness-desc">An example harness with agent lifecycle support loads instructions and definitions, configures the main agent, then creates, starts or reuses additional agents when delegation is needed. Each agent has its own context, model calls and scoped tools.</desc>
+  <defs><marker id="harness-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#83f0f4"/></marker></defs>
+  <rect x="236" y="22" width="772" height="420" rx="12" fill="none" stroke="#557990" stroke-width="2"/>
+  <text x="254" y="52" fill="#ffd18b" font-family="system-ui,sans-serif" font-size="27" font-weight="650">HARNESS · AGENT LIFECYCLE &amp; EXECUTION</text>
+  <g data-harness-node="guards"><rect x="252" y="68" width="738" height="29" rx="6" fill="none" stroke="#557990"/><text x="264" y="89" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="20">State · permissions · budgets · stopping rules</text></g>
+  <g data-harness-node="goal"><rect x="12" y="30" width="201" height="65" rx="10" fill="#0b2032" stroke="#557990"/><text x="112" y="58" text-anchor="middle" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="28">Goal</text><text x="112" y="82" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="20">Build &amp; verify</text></g>
+  <g data-harness-node="instructions"><rect x="12" y="128" width="201" height="67" rx="10" fill="#0b2032" stroke="#557990"/><text x="112" y="156" text-anchor="middle" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="26">AGENTS.md</text><text x="112" y="181" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="20">Project instructions</text></g>
+  <g data-harness-node="config"><rect x="12" y="224" width="201" height="68" rx="10" fill="#0b2032" stroke="#557990"/><text x="112" y="251" text-anchor="middle" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="22">Agent definitions</text><text x="112" y="277" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="18">Model · tools · context</text></g>
+  <g data-harness-node="factory"><rect x="711" y="118" width="281" height="65" rx="10" fill="#0b2032" stroke="#557990"/><text x="851" y="145" text-anchor="middle" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="25">Agent lifecycle</text><text x="851" y="173" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="21" data-harness-lifecycle>Create · start · reuse</text></g>
+  <g data-harness-instance="main">
+    <g data-harness-node="main-agent"><rect x="252" y="111" width="425" height="286" rx="10" fill="none" stroke="#557990" stroke-dasharray="5 5"/><text x="270" y="385" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="20">Main agent · model/context/tools loop</text></g>
+    <g data-harness-node="model"><rect x="271" y="126" width="182" height="72" rx="10" fill="#0b2032" stroke="#557990"/><text x="362" y="156" text-anchor="middle" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="28">Model</text><text x="362" y="183" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="21" data-harness-decision>Next action</text></g>
+    <g data-harness-node="tools"><rect x="482" y="126" width="188" height="72" rx="10" fill="#0b2032" stroke="#557990"/><text x="576" y="156" text-anchor="middle" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="28">Tools</text><text x="576" y="183" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="21" data-harness-tool>Files / tests</text></g>
+    <g data-harness-node="context"><rect x="271" y="282" width="185" height="74" rx="10" fill="#0b2032" stroke="#557990"/><text x="363" y="308" text-anchor="middle" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="28">Context</text><text x="363" y="331" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="19">Instructions</text><text x="363" y="351" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="19">+ observations</text></g>
+  </g>
+  <g data-harness-instance="a">
+    <g data-harness-node="agent-a"><rect x="715" y="228" width="129" height="80" rx="9" fill="#0b2032" stroke="#557990"/><text x="779" y="253" text-anchor="middle" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="24">Agent A</text><text x="779" y="278" text-anchor="middle" fill="#83f0f4" font-family="system-ui,sans-serif" font-size="19">Model calls</text><text x="779" y="300" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="17">Own context</text></g>
+    <g data-harness-node="tools-a"><rect x="872" y="236" width="120" height="64" rx="8" fill="#0b2032" stroke="#557990"/><text x="932" y="265" text-anchor="middle" fill="#83f0f4" font-family="system-ui,sans-serif" font-size="24">Tools A</text><text x="932" y="289" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="16">Scoped tools</text></g>
+  </g>
+  <g data-harness-instance="b">
+    <g data-harness-node="agent-b"><rect x="715" y="334" width="129" height="80" rx="9" fill="#0b2032" stroke="#557990"/><text x="779" y="359" text-anchor="middle" fill="#f4f9ff" font-family="system-ui,sans-serif" font-size="24">Agent B</text><text x="779" y="384" text-anchor="middle" fill="#83f0f4" font-family="system-ui,sans-serif" font-size="19">Model calls</text><text x="779" y="406" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="17">Own context</text></g>
+    <g data-harness-node="tools-b"><rect x="872" y="342" width="120" height="64" rx="8" fill="#0b2032" stroke="#557990"/><text x="932" y="371" text-anchor="middle" fill="#83f0f4" font-family="system-ui,sans-serif" font-size="24">Tools B</text><text x="932" y="395" text-anchor="middle" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="16">Scoped tools</text></g>
+  </g>
+  <g data-harness-node="more-agents"><text x="778" y="434" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="19">… more agents when needed</text></g>
+  <text x="253" y="430" fill="#c7d9e8" font-family="system-ui,sans-serif" font-size="20">Each agent has its own context + tools loop.</text>
+  <g fill="none" stroke="#557990" stroke-width="2" marker-end="url(#harness-arrow)">
+    <path data-harness-link="config" d="M213 258H229V106H851V116"/>
+    <path data-harness-link="create-main" d="M711 151H690V240H679"/>
+    <path data-harness-link="goal" d="M213 62Q247 86 269 153"/>
+    <path data-harness-link="instructions" d="M213 162Q240 279 269 316"/>
+    <path data-harness-link="request" d="M453 163H480"/>
+    <path data-harness-link="result" d="M576 198V242Q576 319 458 319"/>
+    <path data-harness-link="next" d="M363 282V200"/>
+    <path data-harness-link="delegate" d="M363 198V214H689V151H709"/>
+    <path data-harness-link="spawn-a" d="M779 183V226"/>
+    <path data-harness-link="spawn-b" d="M992 151H999V318H779V332"/>
+    <path data-harness-link="agent-a-tool" d="M844 267H870"/>
+    <path data-harness-link="tool-a-result" d="M872 285Q858 321 846 290"/>
+    <path data-harness-link="agent-b-tool" d="M844 373H870"/>
+    <path data-harness-link="tool-b-result" d="M872 391Q858 425 846 396"/>
+    <path data-harness-link="return-a" d="M715 258H685V223H373V200"/>
+    <path data-harness-link="return-b" d="M715 364H681V219H353V200"/>
+  </g>
+  <text x="275" y="241" fill="#a9bccd" font-family="system-ui,sans-serif" font-size="18">next call</text>
+  <text x="509" y="265" fill="#a9bccd" font-family="system-ui,sans-serif" font-size="18">observation</text>
+  <text x="12" y="470" fill="#ffd18b" font-family="system-ui,sans-serif" font-size="22" data-harness-caption>Configure agent definitions, then create or start the required agents.</text>
+</svg>

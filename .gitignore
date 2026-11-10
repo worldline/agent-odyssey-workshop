@@ -1,0 +1,9 @@
+node_modules/
+build/
+.venv/
+.ipynb_checkpoints/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
