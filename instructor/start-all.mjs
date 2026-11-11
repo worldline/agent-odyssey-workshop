@@ -1,19 +1,39 @@
-// Start projection, service, then explicitly authorised public service tunnel.
+// Start slides, the synthetic service, and only then the approved service tunnel.
+// Run the Node entry points directly so shutdown reaches their process groups,
+// rather than leaving npm -> shell -> Node children behind.
 import { spawn } from 'node:child_process';
-import { once } from 'node:events';
+import { createServer } from 'node:net';
 import path from 'node:path';
 
 const ROOT = path.resolve(import.meta.dirname);
-const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+const slidesPort = Number(process.env.SLIDES_PORT || 8100);
+const servicePort = Number(process.env.PORT || 8000);
 const children = new Map();
 let stopping = false;
 let stopPromise;
 
-function signalChild(child, signal) {
+async function assertPortFree(port) {
+  const server = createServer();
+  try {
+    await new Promise((resolve, reject) => {
+      server.once('error', reject);
+      server.listen(port, '127.0.0.1', resolve);
+    });
+  } catch (error) {
+    if (error.code === 'EADDRINUSE') {
+      throw new Error('Port ' + port + ' is already in use. Stop the previous workshop process yourself, verify the process, then retry. Nothing was terminated.');
+    }
+    throw error;
+  } finally {
+    if (server.listening) await new Promise(resolve => server.close(resolve));
+  }
+}
+
+function sendSignal(child, signal) {
   if (child.exitCode !== null || child.signalCode !== null) return;
   try {
     if (process.platform === 'win32') child.kill(signal);
-    else process.kill(-child.pid, signal); // detached npm process group, including its Node command
+    else process.kill(-child.pid, signal); // detached process group includes the Node process tree
   } catch {
     try { child.kill(signal); } catch {}
   }
@@ -24,33 +44,32 @@ async function stop(code = 0) {
   stopping = true;
   stopPromise = (async () => {
     const active = [...children.values()].filter(child => child.exitCode === null && child.signalCode === null);
-    active.forEach(child => signalChild(child, 'SIGTERM'));
+    active.forEach(child => sendSignal(child, 'SIGTERM'));
     await Promise.race([
       Promise.all(active.map(child => child.closed)),
-      new Promise(resolve => setTimeout(resolve, 3000)),
+      new Promise(resolve => setTimeout(resolve, 5000)),
     ]);
     active.filter(child => child.exitCode === null && child.signalCode === null)
-      .forEach(child => signalChild(child, 'SIGKILL'));
+      .forEach(child => sendSignal(child, 'SIGKILL'));
     await Promise.all(active.map(child => child.closed));
     process.exitCode = code;
   })();
   return stopPromise;
 }
 
-for (const signal of ['SIGINT', 'SIGTERM']) {
+for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
   process.once(signal, () => {
-    console.log('\nStopping workshop processes…');
-    void stop(signal === 'SIGINT' ? 130 : 143);
+    console.log('\nStopping workshop process groups…');
+    void stop(signal === 'SIGINT' ? 130 : signal === 'SIGHUP' ? 129 : 143);
   });
 }
 
-function start(name, args) {
-  const child = spawn(npm, args, {
+function start(name, args, nodeOptions = []) {
+  const child = spawn(process.execPath, [...nodeOptions, ...args], {
     cwd: ROOT,
     env: process.env,
     stdio: 'inherit',
     detached: process.platform !== 'win32',
-    shell: process.platform === 'win32',
   });
   child.closed = new Promise(resolve => child.once('close', (code, signal) => resolve({ code, signal })));
   children.set(name, child);
@@ -60,8 +79,8 @@ function start(name, args) {
   });
   child.once('exit', (code, signal) => {
     if (stopping) return;
-    console.error(name + ' stopped unexpectedly (' + (signal || code) + '). Stopping the other workshop processes.');
-    void stop(name === 'share' && code === 0 ? 0 : 1);
+    console.error(name + ' exited unexpectedly (' + (signal || code) + '). Stopping all workshop process groups.');
+    void stop(name === 'Share' && code === 0 ? 0 : 1);
   });
   return child;
 }
@@ -69,42 +88,51 @@ function start(name, args) {
 const healthy = async (url, predicate) => {
   try {
     const response = await fetch(url, { signal: AbortSignal.timeout(1500) });
-    if (!response.ok) return false;
-    return await predicate(response);
+    return response.ok && await predicate(response);
   } catch { return false; }
 };
 
-console.log('Starting local slides: npm run slides');
-start('Slides', ['run', 'slides']);
-console.log('Starting local service: npm run start');
-start('Service', ['run', 'start']);
-console.log('Waiting for slides on 8100 and the checked North Star Supply service on 8000…');
-
-let ready = false;
-for (let attempt = 0; attempt < 60 && !stopping; attempt++) {
-  const [slidesReady, serviceReady] = await Promise.all([
-    healthy('http://127.0.0.1:8100/', async response => (await response.text()).includes('Agent Odyssey with Engineering Excellence')),
-    healthy('http://127.0.0.1:8000/health', async response => {
-      const body = await response.json();
-      return body.status === 'ok' && body.service === 'north-star-supply' && body.demo === true;
-    }),
-  ]);
-  if (slidesReady && serviceReady) { ready = true; break; }
-  await new Promise(resolve => setTimeout(resolve, 1000));
+try {
+  await assertPortFree(slidesPort);
+  await assertPortFree(servicePort);
+} catch (error) {
+  console.error(error.message);
+  process.exitCode = 1;
 }
 
-if (stopping) {
-  await stopPromise;
-} else if (!ready) {
-  console.error('Timed out waiting for the exact local slides and synthetic service. No tunnel was started.');
-  await stop(1);
-} else {
-  console.log('\nSlides:     http://127.0.0.1:8100/');
-  console.log('Service:    http://127.0.0.1:8000');
-  console.log('Starting organiser-approved sharing: npm run share');
-  console.log('Only the checked API service on port 8000 is shared. Keep this terminal open; Ctrl+C closes all three.');
-  start('Share', ['run', 'share']);
-  await children.get('Share').closed;
-  if (!stopping) await stop(0);
-  await stopPromise;
+if (!process.exitCode) {
+  console.log('Starting slides on port ' + slidesPort + '.');
+  start('Slides', ['tooling/serve-slides.mjs'], []);
+  console.log('Starting the synthetic API on port ' + servicePort + '.');
+  start('Service', ['tooling/run-reference.mjs', '--port', String(servicePort)]);
+  console.log('Waiting for both local health checks before opening the API tunnel…');
+
+  let ready = false;
+  for (let attempt = 0; attempt < 60 && !stopping; attempt++) {
+    const [slidesReady, serviceReady] = await Promise.all([
+      healthy('http://127.0.0.1:' + slidesPort + '/', async response => (await response.text()).includes('Agent Odyssey with Engineering Excellence')),
+      healthy('http://127.0.0.1:' + servicePort + '/health', async response => {
+        const body = await response.json();
+        return body.status === 'ok' && body.service === 'north-star-supply' && body.demo === true;
+      }),
+    ]);
+    if (slidesReady && serviceReady) { ready = true; break; }
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+
+  if (stopping) {
+    await stopPromise;
+  } else if (!ready) {
+    console.error('Timed out waiting for the exact local slides and synthetic service. No tunnel was started.');
+    await stop(1);
+  } else {
+    console.log('\nSlides:     http://127.0.0.1:' + slidesPort + '/');
+    console.log('Service:    http://127.0.0.1:' + servicePort);
+    console.log('Starting the organiser-approved ngrok service tunnel.');
+    console.log('Only the checked API service is shared. Keep this terminal open; press Ctrl+C once to stop everything.');
+    start('Share', ['tooling/expose-service.mjs', '--allow-public-exposure', '--prompt-authtoken'], ['--env-file=.env']);
+    await children.get('Share').closed;
+    if (!stopping) await stop(0);
+    await stopPromise;
+  }
 }
