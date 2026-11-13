@@ -13,14 +13,14 @@ npm ci
 
 ## Recommended: start all three with one command
 
-Ensure ports **8100 and 8000 are free** first. Stop only workshop servers you recognize; do not terminate unknown processes.
+Ensure ports **8100 and 8000 are free** first. Stop only workshop servers you recognize; do not terminate unknown processes. If an older run left one behind, inspect it with `lsof -nP -iTCP:8100 -sTCP:LISTEN` or the equivalent for 8000, then verify the owning command before stopping that specific process.
 
 ```bash
 cd instructor
 npm run all
 ```
 
-The supervisor starts the slides server and synthetic API using their Node entrypoints, waits for both to pass health checks, then starts the ngrok launcher with the `.env` file loaded. If either local port is occupied or either server is wrong/unhealthy, it stops and opens no tunnel. It terminates the complete child process groups on Ctrl+C or hang-up and sends a force-kill only if they have not stopped within five seconds.
+The supervisor starts the slides server and synthetic API as direct Node child processes, waits for both to pass health checks, then starts the ngrok launcher with the `.env` file loaded. If either local port is occupied or either server is wrong/unhealthy, it stops and opens no tunnel. Ctrl+C, terminal hang-up or a child failure signals and reaps its children; after five seconds only remaining child PIDs are force-killed. This avoids orphaned `npm → shell → Node` process trees.
 
 Open the printed slide URL, normally **http://127.0.0.1:8100/**, in one browser window. The `/start` legacy address redirects there. Navigation and the current section timer appear in an auto-hiding footer: move the pointer, touch, or press a key to reveal it; it hides after five idle seconds. Keyboard: arrows/Enter/Space navigate, number keys select chapters, F requests fullscreen. The timer starts/resets manually.
 

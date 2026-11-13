@@ -1,6 +1,6 @@
 // Start slides, the synthetic service, and only then the approved service tunnel.
-// Run the Node entry points directly so shutdown reaches their process groups,
-// rather than leaving npm -> shell -> Node children behind.
+// Spawn the Node entry points directly as ordinary children so signals propagate
+// through the `npm run all` terminal session and are handled by each service.
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import path from 'node:path';
@@ -31,12 +31,7 @@ async function assertPortFree(port) {
 
 function sendSignal(child, signal) {
   if (child.exitCode !== null || child.signalCode !== null) return;
-  try {
-    if (process.platform === 'win32') child.kill(signal);
-    else process.kill(-child.pid, signal); // detached process group includes the Node process tree
-  } catch {
-    try { child.kill(signal); } catch {}
-  }
+  try { child.kill(signal); } catch {}
 }
 
 async function stop(code = 0) {
@@ -59,7 +54,7 @@ async function stop(code = 0) {
 
 for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
   process.once(signal, () => {
-    console.log('\nStopping workshop process groups…');
+    console.log('\nStopping workshop services…');
     void stop(signal === 'SIGINT' ? 130 : signal === 'SIGHUP' ? 129 : 143);
   });
 }
@@ -69,7 +64,6 @@ function start(name, args, nodeOptions = []) {
     cwd: ROOT,
     env: process.env,
     stdio: 'inherit',
-    detached: process.platform !== 'win32',
   });
   child.closed = new Promise(resolve => child.once('close', (code, signal) => resolve({ code, signal })));
   children.set(name, child);
@@ -79,8 +73,8 @@ function start(name, args, nodeOptions = []) {
   });
   child.once('exit', (code, signal) => {
     if (stopping) return;
-    console.error(name + ' exited unexpectedly (' + (signal || code) + '). Stopping all workshop process groups.');
-    void stop(name === 'Share' && code === 0 ? 0 : 1);
+    console.error(name + ' exited (' + (signal || code) + '). Stopping the remaining workshop services.');
+    void stop(code === 0 ? 0 : 1);
   });
   return child;
 }
