@@ -1,0 +1,10 @@
+{
+  "prerequisites": "https://wrl.li/mission-onboard",
+  "demoKit": "https://wrl.li/harness-demo-in",
+  "referenceService": "https://wrl.li/agent-reference",
+  "tp1Template": "https://wrl.li/agent-tp1",
+  "tp1Correction": "https://wrl.li/agent-tp1-solution",
+  "tp2Template": "https://wrl.li/agent-tp2",
+  "tp2Correction": "https://wrl.li/agent-tp2-solution",
+  "materials": "https://wrl.li/agent-materials"
+}

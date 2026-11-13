@@ -9,7 +9,7 @@
 
 | Resource | Link |
 |---|---|
-| Preparation | [https://wrl.li/https://wrl.li/mission-onboard](https://wrl.li/https://wrl.li/mission-onboard) |
+| Preparation | [https://wrl.li/mission-onboard](https://wrl.li/mission-onboard) |
 | Harness initial kit | [https://wrl.li/harness-demo-in](https://wrl.li/harness-demo-in) |
 | Complete service correction | [https://wrl.li/agent-reference](https://wrl.li/agent-reference) |
 | TP1 Colab template | [Open Colab](https://colab.research.google.com/drive/1FRyi_XadXG1uDxwxBq3amjozduWyIr6E?#copy=true) |
@@ -18,7 +18,7 @@
 | TP2 Colab correction | [Open Colab](https://colab.research.google.com/drive/1505Q1ntRog-ZksFYCmsBy_-imFcErLqa?#copy=true) |
 | All resources | [https://wrl.li/agent-materials](https://wrl.li/agent-materials) |
 
-The four direct Colab links open the Google-hosted notebooks with the requested ?#copy=true suffix. Colab is maintained in Google; the [notebook index](notebooks/README.md) links to the four versioned local Jupyter files. The slides retain their working short-link QR codes. Drive sharing permissions and runtime execution remain separate checks from a working redirect. The onboarding alias currently contains a duplicated https://wrl.li/ prefix but redirects correctly.
+The four direct Colab links open the Google-hosted notebooks with the requested ?#copy=true suffix. Colab is maintained in Google; the [notebook index](notebooks/README.md) links to the four versioned local Jupyter files. The slides retain their working short-link QR codes. Drive sharing permissions and runtime execution remain separate checks from a working redirect. The onboarding alias has been corrected to https://wrl.li/mission-onboard and verified to redirect to the public README Start section.
 
 ## Repository files
 

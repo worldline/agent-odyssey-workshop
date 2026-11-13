@@ -1,10 +1,10 @@
 {
   "prerequisites": {
-    "shortUrl": "https://wrl.li/https://wrl.li/mission-onboard",
+    "shortUrl": "https://wrl.li/mission-onboard",
     "destination": "https://github.com/worldline/agent-odyssey-workshop#start",
     "asset": "qr-prerequisites.png",
     "httpStatus": 302,
-    "correctedQR": false
+    "correctedQR": true
   },
   "demoKit": {
     "shortUrl": "https://wrl.li/harness-demo-in",
