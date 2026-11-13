@@ -8,7 +8,7 @@ Build a payment service with an agentic coding harness, then consume it through 
 
 ## Resources
 
-See [RESOURCES.md](RESOURCES.md) for slides, initial kit, correction and all notebooks.
+See [RESOURCES.md](RESOURCES.md) for slides, initial kit, correction and all notebooks. Repository maintenance guidance for future coding agents is in [AGENTS.md](AGENTS.md).
 
 - [Web presentation](https://worldline.github.io/agent-odyssey-workshop/)
 - [PDF](https://worldline.github.io/agent-odyssey-workshop/agent-odyssey.pdf)
